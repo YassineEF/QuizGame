@@ -12,14 +12,22 @@ module.exports.displayThématique = function (req, res) {
 }
 
 
-module.exports.displayQuiz = function (req,res) {
+module.exports.displayQuiz =  function  (req,res) {
     let CategoryID = req.query.CategoryID;
-    db.query("SELECT id, name, photo, id_admin, id_thématique FROM quiz WHERE id_thématique = ?", [CategoryID],function (err, rows){
+     db.query("SELECT id, thématique FROM thématiques WHERE id = ?", [CategoryID],function  (err, cat){
         if(err){
             res.json({ msg: "error" });
-            
         } else {
-            res.json({ msg: "success", quiz: rows });
+            db.query("SELECT quiz.id, quiz.name, quiz.id_admin, quiz.id_thématique FROM quiz WHERE id_thématique = ?", [CategoryID], function (err, rows) {
+               if(err){
+                   res.json({ msg: "error" });
+                   
+               } else {
+                   res.json({ msg: "success", quiz: rows, cat:cat[0] });
+               }
+               
+           })
         }
     })
 }
+
