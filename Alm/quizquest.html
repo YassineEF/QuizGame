@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizQuestions</title>
+    <link rel="stylesheet" href="alm.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800;900&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <img src="./images/Logo_Quiz.png" alt="Logo" />
+      </div>
+      <div class="menu-btn">
+        <span class="menu-btn_burger"></span>
+      </div>
+      <div class="nav">
+        <ul class="menu-nav">
+          <li class="menu-nav_item">
+            <a href="#" class="menu-nav_link"> QUIZ </a>
+            <ul class="sousmenu-nav">
+              <li><a href ="#" class="sousmenu-nav_link">Culture générale</a> </li>
+              <li><a href ="#" class="sousmenu-nav_link">Arts</a></li>
+              <li><a href ="#" class="sousmenu-nav_link">Sciences</a></li>
+              <li><a href ="#" class="sousmenu-nav_link">Sports</a></li>
+              <li><a href ="#" class="sousmenu-nav_link">Géographie</a></li>
+              <li><a href ="#" class="sousmenu-nav_link">Histoire</a></li>
+
+            </ul>
+          </li>
+          <li class="menu-nav_item">
+            <a href="#" class="menu-nav_link"> S'INSCRIRE </a>
+          </li>
+          <li class="menu-nav_item">
+            <a href="#" class="menu-nav_link"> SE CONNECTER </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main-general">
+      <section id="topQuizQuest">
+        <div class="timer-QuizQuest">
+          <p id="timeInNumbers-QuizQuest">00:00</p>
+        </div>
+        <div class="thematBox-QuizQuest">
+          <p class="thematText-QuizQuest">Thématique</p>
+        </div>
+        <h3 class="quizName-QuizQuest">Nom du quiz</h3>
+        <ul id="ul-compteurQuest-QuizQuest">
+          <li id="li-numeroQuest-QuizQuest">01</li>
+          <li id="li-numeroQuest-QuizQuest">02</li>
+          <li id="li-numeroQuest-QuizQuest">03</li>
+          <li id="li-numeroQuest-QuizQuest">04</li>
+          <li id="li-numeroQuest-QuizQuest">05</li>
+          <li id="li-numeroQuest-QuizQuest">06</li>
+          <li id="li-numeroQuest-QuizQuest">07</li>
+          <li id="li-numeroQuest-QuizQuest">08</li>
+          <li id="li-numeroQuest-QuizQuest">09</li>
+          <li id="li-numeroQuest-QuizQuest">10</li>
+        </ul>
+      </section>
+      <div id="overlay-QuizQuest"><p id="overlay-start">START</p></div>
+      <article class="questRep-QuizQuest">
+        <div class="gridContainer-QuizQuest">
+          <div class="grid-itemQq question-QuizQuest">
+            Dans quel état américain, l’Ouragan Katrina a-t-il fait un ravage en
+            2005?
+          </div>
+          <div class="grid-itemQq itemTopRp1-QuizQuest">réponse 1</div>
+          <div class="grid-itemQq itemTopRp2-QuizQuest">réponse 2</div>
+          <div class="grid-itemQq itemBottomRp3-QuizQuest">réponse 3</div>
+          <div class="grid-itemQq itemBottomRp4-QuizQuest">réponse 4</div>
+          <div class="grid-itemQq vrai-QuizQuest">VRAI</div>
+          <div class="grid-itemQq faux-QuizQuest">FAUX</div>
+        </div>
+        <div id="bravoDomm-QuizQuest">
+          <p class="bravo-QuizQuest">BRAVO !</p>
+          <br />
+
+          <p class="dommage-QuizQuest">DOMMAGE !</p>
+        </div>
+      </article>
+    </main>
+
+    <script src="./animation.js"></script>
+  </body>
+</html>
