@@ -46,3 +46,31 @@ setInterval(() => {
   timerElement.innerText = `${minutes}:${secondes}`
   temps = temps <= 0 ? 0 : temps - 1
 }, 1000)
+
+
+
+
+
+
+
+
+
+
+// let { quests, reps } = res;
+// let id_quests = [];
+
+// for (i in quests) {
+//   id_quests.push(quests[i].id);
+// }
+
+// results = [];
+// for (i in id_quests) {
+//   results.push([quests[i].question]);
+
+//   for (d in reps) {
+//     if (reps[d].id_question === id_quests[i]) {
+//       results[i].push([reps[d].reponse, reps[d].boolean]);
+//     }
+//   }
+// }
+// console.log(results);
