@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scores</title>
+    <link rel="stylesheet" href="alm.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+    href="https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800;900&family=Russo+One&display=swap"
+    rel="stylesheet"
+  </head>
+  <body>
+    <header>
+      <div id="logo">
+        <img src="./images/Logo_Quiz.png" alt="Logo" />
+      </div>
+      <div class="menu-btn">
+        <span class="menu-btn_burger"></span>
+      </div>
+      <div class="nav">
+        <ul class="menu-nav">
+          <li class="menu-nav_item">
+            <a href="#" class="menu-nav_link"> QUIZ </a>
+          </li>
+          <li class="menu-nav_item">
+            <a href="#" class="menu-nav_link"> S'INSCRIRE </a>
+          </li>
+          <li class="menu-nav_item">
+            <a href="#" class="menu-nav_link"> SE CONNECTER </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main class="main-general">
+      <h1 id="h1-scorePage">
+        DÉCOUVRE TES SCORES <br />
+        & <br />
+        CEUX DES AUTRES JOUEURS
+      </h1>
+      <h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) !</h2>
+      <div id="scoresJoueur-scorePage">
+        <!--<h3 id="rpJustes-scorePage">
+          Tu as obtenu<span id="scoreSurDix-scorePage"> X </span> /10
+        </h3>
+        <h3 id="temps-scorePage">
+         en <span id="tempsQuiz-scorePage"> 00 </span>min<span
+            id="tempsQuiz-scorePage"
+          >
+            00
+          </span>
+          sec
+        </h3> -->
+
+        <h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> X </span> / 10 en <span id="tempsQuiz-scorePage"> 00 </span>min<span
+          id="tempsQuiz-scorePage"
+        >
+          00
+        </span>
+        sec 
+      </div>
+      <div class="buttons-scorePage">
+        <a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
+
+        <a class="buttonChoisis-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a>
+      </div>
+      <table id="table-scorePage">
+        <thead id="thead-scorePage">
+          <tr>
+            <th id="topFive-scorePage" colspan="3">
+              Top 5 des meilleurs scores
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="tr-topTable-scorePage">
+            <td class="topTable-scorePage"><h4>Pseudo</h4></td>
+            <td class="topTable-scorePage"><h4>Score / 10</h4></td>
+            <td class="topTable-scorePage"><h4>Temps</h4></td>
+          </tr>
+          <tr class="tr-oddRow-scorePage">
+            <th class="oddRow-scorePage">Nol</th>
+            <th class="oddRow-scorePage">9</th>
+            <th class="oddRow-scorePage">02:57</th>
+          </tr>
+          <tr class="tr-evenRow-scorePage">
+            <th class="evenRow-scorePage">Maria</th>
+            <th>9</th>
+            <th>02:55</th>
+          </tr>
+          <tr class="tr-oddRow-scorePage">
+            <th class="oddRow-scorePage">Sam</th>
+            <th>8</th>
+            <th>03:00</th>
+          </tr>
+          <tr class="tr-evenRow-scorePage">
+            <th class="evenRow-scorePage">Sally</th>
+            <th>9</th>
+            <th>03:00</th>
+          </tr>
+          <tr class="tr-oddRow-scorePage">
+            <th class="oddRow-scorePage" >Sol</th>
+            <th>7</th>
+            <th>02:40</th>
+          </tr>
+        </tbody>
+      </table>
+      <div class="buttons-scorePage">
+        <a class="buttonChoisis-scorePage" href="#"
+          >CHOISIS UNE AUTRE THÉMATIQUE</a
+        >
+      </div>
+    </main>
+
+    <script src="./animation.js"></script>
+  </body>
+</html>
