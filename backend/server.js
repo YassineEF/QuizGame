@@ -12,6 +12,7 @@ app.use(express.urlencoded({extended: true}));
 //ROUTE CATEGORY
 app.use("/",categoryRouter)
 app.use("/CategoryQuiz:CategoryID", categoryRouter)
+app.use("/QuizQuestion:idQuiz", categoryRouter)
 
 
 

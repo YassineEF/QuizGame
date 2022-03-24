@@ -16,7 +16,7 @@
   <body>
     <header>
       <div id="logo">
-        <img src="./images/Logo_Quiz.png" alt="Logo" />
+        <img src="../frontend/public/views/images/Logo_Quiz.png" alt="Logo" />
       </div>
       <div class="menu-btn">
         <span class="menu-btn_burger"></span>
@@ -45,6 +45,7 @@
       </div>
     </header>
     <main class="main-general">
+      <div id="overlay-QuizQuest"><p id="overlay-start">START</p></div>
       <section id="topQuizQuest">
         <div class="timer-QuizQuest">
           <p id="timeInNumbers-QuizQuest">00:00</p>
@@ -66,17 +67,17 @@
           <li id="li-numeroQuest-QuizQuest">10</li>
         </ul>
       </section>
-      <div id="overlay-QuizQuest"><p id="overlay-start">START</p></div>
+      
       <article class="questRep-QuizQuest">
+        <div class="question-QuizQuest">
+          Dans quel état américain, l’Ouragan Katrina a-t-il fait un ravage en
+          2005?
+        </div>
         <div class="gridContainer-QuizQuest">
-          <div class="grid-itemQq question-QuizQuest">
-            Dans quel état américain, l’Ouragan Katrina a-t-il fait un ravage en
-            2005?
-          </div>
-          <div class="grid-itemQq itemTopRp1-QuizQuest">réponse 1</div>
-          <div class="grid-itemQq itemTopRp2-QuizQuest">réponse 2</div>
-          <div class="grid-itemQq itemBottomRp3-QuizQuest">réponse 3</div>
-          <div class="grid-itemQq itemBottomRp4-QuizQuest">réponse 4</div>
+          <div class="grid-itemQq ">réponse 1</div>
+          <div class="grid-itemQq ">réponse 2</div>
+          <div class="grid-itemQq ">réponse 3</div>
+          <div class="grid-itemQq ">réponse 4</div>
           <div class="grid-itemQq vrai-QuizQuest">VRAI</div>
           <div class="grid-itemQq faux-QuizQuest">FAUX</div>
         </div>
@@ -87,6 +88,7 @@
           <p class="dommage-QuizQuest">DOMMAGE !</p>
         </div>
       </article>
+
     </main>
 
     <script src="./animation.js"></script>

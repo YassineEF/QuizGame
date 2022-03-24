@@ -129,7 +129,7 @@ header {
   -webkit-border-top-left-radius: 24px;
   -webkit-border-bottom-left-radius: 24px;
   -moz-border-radius-topleft: 24px;
-  moz-border-radius-bottomleft: 24px;
+  -moz-border-radius-bottomleft: 24px;
   border-top-left-radius: 24px;
   border-bottom-left-radius: 24px;
 }
@@ -166,7 +166,7 @@ font-size: 1.2rem;
 }
 
 /* MAIN */
-.main-general {
+main {
   background: conic-gradient(
     from 60deg at -5% 20%,
     rgba(121, 122, 181, 0.9) 10deg,
@@ -264,28 +264,28 @@ PAGE QUESTIONS / REPONSES*/
   font-size: 0.7rem;
 }
 /*overlay article question rps*/
-#overlay-QuizQuest {
-  position: fixed;
+ #overlay-QuizQuest {
+  position: absolute;
   margin: 0 auto;
   width: 100%;
   height: 100%;
   display: inline-block;
   background-color: #45467a;
-  opacity: 80%;
+  opacity: 90%;
   cursor: pointer;
   color: #ffc334;
   font-family: "Russo One";
   font-size: 5rem;
   text-align: center;
-  display: none;
-}
+  /* display: none; */
+} 
 #overlay-start {
   position: absolute;
   font-size: 5rem;
-  top: 30%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  display: none;
+  /* display: none; */
 }
 /*- - - - - Section question + réponses */
 .questRep-QuizQuest {
@@ -295,7 +295,10 @@ PAGE QUESTIONS / REPONSES*/
 
 .gridContainer-QuizQuest {
   display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  grid-template-rows: repeat(4, 1fr);
   gap: 1.5rem;
+  margin-top: 1.5rem;
   background-color: transparent;
   text-align: center;
   justify-content: center;
@@ -309,66 +312,35 @@ PAGE QUESTIONS / REPONSES*/
   padding: 0.5rem;
   border: 0.5rem solid #6667ab;
   align-content: center;
-  display: grid;
   justify-content: center;
   align-content: center;
 }
 .question-QuizQuest {
-  grid-column: 1;
-  grid-row: 1;
   margin: 0 auto;
-  width: 25rem;
+  width: 20rem;
   height: auto;
   padding: 0.5rem;
   color: #d8d8ea;
   font-size: 1.5rem;
   font-weight: 500;
   border-radius: 2rem;
+  background-color: #45467a;
+  text-align: center;
+  font-family: "Ruda", sans-serif;
+  padding: 0.5rem;
+  border: 0.5rem solid #6667ab;
+  align-content: center;
 }
 
-.itemTopRp1-QuizQuest {
+.grid-itemQq {
   width: auto;
-  grid-column: 1;
-  grid-row: 2;
   border: 0.5rem solid #6667ab;
   color: #d8d8ea;
   font-size: 1.2rem;
   height: 5rem;
   align-self: center;
   border-radius: 2rem;
-  display: none;
-}
 
-.itemTopRp2-QuizQuest {
-  grid-column: 1;
-  grid-row: 3;
-  border: 0.5rem solid #6667ab;
-  color: #d8d8ea;
-  font-size: 1.2rem;
-  height: 5rem;
-  border-radius: 2rem;
-  display: none;
-}
-.itemBottomRp3-QuizQuest {
-  grid-column: 1;
-  grid-row: 2;
-  border: 0.5rem solid #6667ab;
-  color: #d8d8ea;
-  font-size: 1.2rem;
-  height: 5rem;
-  border-radius: 2rem;
-  display: none;
-}
-
-.itemBottomRp4-QuizQuest {
-  grid-column: 1;
-  grid-row: 3;
-  border: 0.5rem solid #6667ab;
-  color: #d8d8ea;
-  font-size: 1.2rem;
-  height: 5rem;
-  border-radius: 2rem;
-  display: none;
 }
 
 .vrai-QuizQuest {
@@ -381,6 +353,7 @@ PAGE QUESTIONS / REPONSES*/
   height: 8rem;
   border-radius: 2rem;
   margin-bottom: 2rem;
+  display: none;
 }
 .faux-QuizQuest {
   grid-column: 1 !important;
@@ -391,6 +364,7 @@ PAGE QUESTIONS / REPONSES*/
   letter-spacing: 0.5rem;
   height: 8rem;
   border-radius: 2rem;
+  display: none;
 }
 
 .itemTopRp1-QuizQuest:hover,
@@ -599,6 +573,24 @@ PAGE QUESTIONS / REPONSES*/
 .evenRow-scorePage {
   padding: 0.2rem;
 }
+
+
+/*réponses vrai faux*/
+
+.vrai-QuizQuest {
+  grid-column: 1;
+  grid-row: 2;
+  height: 12rem;
+  display: none;
+
+}
+.faux-QuizQuest {
+  grid-column: 2;
+  grid-row: 2;
+  height: 12rem;
+  display: none;
+
+}
 @media screen and (min-width: 768px) {
   #logo img {
     height: 8rem;
@@ -611,6 +603,7 @@ PAGE QUESTIONS / REPONSES*/
   .sousmenu-nav_link{
     font-size: 2rem;
     font-weight: 400;
+    display: none;
   }
   .nav {
     visibility: visible;
@@ -684,9 +677,10 @@ PAGE QUESTIONS / REPONSES*/
   }
   .gridContainer-QuizQuest {
     display: grid;
-    /*grid-template-columns: repeat(2, 1fr);*/
-    grid-template-rows: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    margin-top: 2rem;
+    /* gap: 2rem; */
   }
   .grid-itemQq {
     background-color: #45467a;
@@ -699,10 +693,8 @@ PAGE QUESTIONS / REPONSES*/
     align-content: center;
   }
   .question-QuizQuest {
-    grid-column-start: 1;
-    grid-column-end: 3;
+   
     width: auto;
-    grid-row: 1;
     margin: 0 auto;
     width: auto;
     height: auto;
@@ -712,8 +704,7 @@ PAGE QUESTIONS / REPONSES*/
     font-weight: 500;
   }
   .itemTopRp1-QuizQuest {
-    grid-column: 1;
-    grid-row: 2;
+    
     border: 0.5rem solid #6667ab;
     color: #d8d8ea;
     font-size: 2rem;
@@ -721,41 +712,27 @@ PAGE QUESTIONS / REPONSES*/
     align-self: center;
   }
   .itemTopRp2-QuizQuest {
-    grid-column: 2;
-    grid-row: 2;
+  
     border: 0.5rem solid #6667ab;
     color: #d8d8ea;
     font-size: 2rem;
     height: 8rem;
   }
   .itemBottomRp3-QuizQuest {
-    grid-column: 1;
-    grid-row: 3;
+   
     border: 0.5rem solid #6667ab;
     color: #d8d8ea;
     font-size: 2rem;
     height: 8rem;
   }
   .itemBottomRp4-QuizQuest {
-    grid-column: 2;
-    grid-row: 3;
+   
     border: 0.5rem solid #6667ab;
     color: #d8d8ea;
     font-size: 2rem;
     height: 8rem;
   }
 }
-/*réponses vrai faux*/
 
-.vrai-QuizQuest {
-  grid-column: 1;
-  grid-row: 2;
-  height: 12rem;
-}
-.faux-QuizQuest {
-  grid-column: 2;
-  grid-row: 2;
-  height: 12rem;
-}
 
 /*page scores*/
