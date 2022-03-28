@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800;900&family=Russo+One&display=swap"
+      rel="stylesheet"
+    />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+<body>
+
+<header>
+      <div id="logo">
+        <img src="./images/Logo_Quiz.png" alt="Logo" />
+      </div>
+      
+      
+      </div>
+    </header>
+<main>
+    
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form action="#">
+                <h1>Créer un compte</h1>
+                 <!-- <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                    
+                </div> 
+                <span>or use your email for registration</span> -->
+                <input class="no-outline"type="text" placeholder="Pseudo" />
+                <input class="no-outline"type="email" placeholder="Email" />
+                <input class="no-outline"type="password" placeholder="Mot de passe" />
+                <button>Je m'inscris !</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form action="#">
+                <h1>Se connecter</h1>
+               <!-- <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span> -->
+                <input class="no-outline"type="email" placeholder="Email" />
+                <input class="no-outline"type="password" placeholder="Mot de passe" />
+                <a href="#">Mot de passe oublié?</a>
+                <button>Je me connecte !</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Ravis de te revoir !</h1>
+                    <p>Pour consulter ton historique et créer des quiz, connecte-toi !</p>
+                    <button class="ghost" id="signIn">Je me connecte !</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Bonjour!</h1>
+                    <p>Tu veux conserver tes scores et créer des quiz ? Inscris-toi !</p>
+                    <button class="ghost" id="signUp">Je m'inscris !</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+</main>
+
+</style>
+
+<body>
+   
+
+<script>
+const signUpButton = document.getElementById('signUp');
+const signInButton = document.getElementById('signIn');
+const container = document.getElementById('container');
+
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});
+
+</script>
+<script src="./animation.js"></script>
+</body>
+</html>
+
