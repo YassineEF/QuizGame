@@ -301,7 +301,7 @@ header {
   font-size: 5rem;
   text-align: center;
   z-index:-2;
-  xdisplay: none;
+  /* display: none; */
 }
 #overlay-start {
   position: absolute;
@@ -310,7 +310,7 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index:-1;
-  xdisplay: none;
+  /* display: none; */
 }
 /*- - - - - Section question + réponses */
 .questRep-QuizQuest {
@@ -363,7 +363,7 @@ header {
   height: 5rem;
   align-self: center;
   border-radius: 2rem;
-  xdisplay: none;
+  /* display: none; */
 }
 
 .itemTopRp2-QuizQuest {
@@ -374,7 +374,7 @@ header {
   font-size: 1.2rem;
   height: 5rem;
   border-radius: 2rem;
-  xdisplay: none;
+  /* display: none; */
 }
 .itemBottomRp3-QuizQuest {
   grid-column: 1;
@@ -384,7 +384,7 @@ header {
   font-size: 1.2rem;
   height: 5rem;
   border-radius: 2rem;
-  xdisplay: none;
+  /* display: none; */
 }
 
 .itemBottomRp4-QuizQuest {
@@ -395,7 +395,7 @@ header {
   font-size: 1.2rem;
   height: 5rem;
   border-radius: 2rem;
-  xdisplay: none;
+  /* display: none; */
 }
 /*
 .vrai-QuizQuest {

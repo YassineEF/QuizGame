@@ -38,7 +38,7 @@ module.exports.displayQuiz = function (req, res) {
 module.exports.displayQuestions = function (req, res) {
   let idQuiz = req.query.idQuiz;
   db.query(
-    "SELECT id, question, id_quiz FROM questions  WHERE id_quiz = ?",
+    "SELECT q.id as id_quest, q.question, q.id_quiz, qu.id as id_quizz, qu.name, qu.id_thématique, t.id as id_them, t.thématique FROM questions q JOIN quiz qu ON q.id_quiz = qu.id JOIN thématiques t ON qu.id_thématique = t.id WHERE id_quiz =  ?",
     [idQuiz],
     function (err, rows) {
         if (err) {
@@ -47,12 +47,12 @@ module.exports.displayQuestions = function (req, res) {
       const quests = rows;
       let l = [];
       for (i in quests) {
-        l.push(quests[i].id);
+        l.push(quests[i].id_quest);
       }
-      
-      db.query(
+      async function answers(indexQuest) {
+        let rep = await   db.query(
         "SELECT id, reponse, boolean, id_question FROM reponses WHERE id_question IN (?)",
-        [l],
+        [indexQuest],
         function (err, reps) {
           if (err) {
             res.json({ msg: "error" });
@@ -60,8 +60,12 @@ module.exports.displayQuestions = function (req, res) {
           } else {
             res.json({ msg: "success",  quests,  reps });
           }
+
         }
-      );
+        );
+        return rep
+      }
+      answers(l)
     }
     }
   );
