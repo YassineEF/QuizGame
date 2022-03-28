@@ -30,13 +30,6 @@
         <div class="form-container sign-up-container">
             <form action="#">
                 <h1>Créer un compte</h1>
-                 <!-- <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                    
-                </div> 
-                <span>or use your email for registration</span> -->
                 <input class="no-outline"type="text" placeholder="Pseudo" />
                 <input class="no-outline"type="email" placeholder="Email" />
                 <input class="no-outline"type="password" placeholder="Mot de passe" />
@@ -46,12 +39,6 @@
         <div class="form-container sign-in-container">
             <form action="#">
                 <h1>Se connecter</h1>
-               <!-- <div class="social-container">
-                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
-                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
-                </div>
-                <span>or use your account</span> -->
                 <input class="no-outline"type="email" placeholder="Email" />
                 <input class="no-outline"type="password" placeholder="Mot de passe" />
                 <a href="#">Mot de passe oublié?</a>
@@ -63,12 +50,12 @@
                 <div class="overlay-panel overlay-left">
                     <h1>Ravis de te revoir !</h1>
                     <p>Pour consulter ton historique et créer des quiz, connecte-toi !</p>
-                    <button class="ghost" id="signIn">Je me connecte !</button>
+                    <button class="ghost" id="signInGhost">Je me connecte !</button>
                 </div>
                 <div class="overlay-panel overlay-right">
                     <h1>Bonjour!</h1>
                     <p>Tu veux conserver tes scores et créer des quiz ? Inscris-toi !</p>
-                    <button class="ghost" id="signUp">Je m'inscris !</button>
+                    <button class="ghost" id="signUpGhost">Je m'inscris !</button>
                 </div>
             </div>
         </div>
@@ -84,8 +71,8 @@
    
 
 <script>
-const signUpButton = document.getElementById('signUp');
-const signInButton = document.getElementById('signIn');
+const signUpButton = document.getElementById('signUpGhost');
+const signInButton = document.getElementById('signInGhost');
 const container = document.getElementById('container');
 
 signUpButton.addEventListener('click', () => {

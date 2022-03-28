@@ -4,6 +4,10 @@ const nav = document.querySelector('.nav');
 const menuNav = document.querySelector('.menu-nav');
 const navItems = document.querySelectorAll('.menu-nav_item');
 
+const signUpButton = document.getElementById('signUpGhost');
+const signInButton = document.getElementById('signInGhost');
+const container = document.getElementById('container');
+
 
 let showMenu = false;
 
@@ -29,3 +33,13 @@ function toggleMenu(){
         showMenu = false;
     }
 }
+
+
+// Switch panel button
+signUpButton.addEventListener('click', () => {
+	container.classList.add("right-panel-active");
+});
+
+signInButton.addEventListener('click', () => {
+	container.classList.remove("right-panel-active");
+});

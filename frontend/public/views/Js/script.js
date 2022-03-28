@@ -1,12 +1,15 @@
 //FONCTION
 
+
 //Fonction Page d'acceuil
 function showAcceuil(len,resp) {
-    //Cacher le overlay popur le show apres
+    //Cacher le overlay pour le show apres
     $("#overlay_inscription").hide();
     $("#overlay-QuizQuest").hide();
     $("#topQuizQuest").hide();
-    
+    $("#container").hide();
+    $(".questRep-QuizQuest").hide()
+    $(".questRep-QuizQuest").show()
     //Montrer les categories
     for (let i = 0; i < len; i++) {
       $(".categories").append(`<div class="categorie_image" id="${resp.thema[i].id}"><img src="./images/${resp.thema[i].id}.jpg" alt="img Categories">
@@ -35,6 +38,7 @@ function showQuestions() {
   $("#background_img").hide();
   $("#grid_thematique").hide();
   $("#overlay_inscription").hide();
+  $(".questRep-QuizQuest").show()
   $("#overlay-QuizQuest").show();
   $("#overlay-QuizQuest").html(`<p id="overlay-start">START</p>`);
   $("#topQuizQuest").show();
@@ -82,6 +86,7 @@ function timer(scores,mins,secs,numeroQuest){
 
 // Function show tableau de score
 function scoreTable(scores, mins,secs,numeroQuest) {
+    $("header").show()
     $("#topQuizQuest").hide();
     $(".questRep-QuizQuest").hide();
     $("main").append(`<h1 id="h1-scorePage">DÉCOUVRE TES SCORES <br /> & <br />CEUX DES AUTRES JOUEURS</h1>`);
@@ -96,8 +101,20 @@ function scoreTable(scores, mins,secs,numeroQuest) {
     }        
     $("main").append(` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${mins} </span>min<span id="tempsQuiz-scorePage"> ${secs}</span> sec </h3></div>`);
     $("main").append(`<div class="buttons-scorePage"><a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
-    <a class="buttonChoisis-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
-    
+    <a class="buttonChoisis-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);  
+}
+
+function ShowInscription() {
+    $("#container").show();
+    $(".categories").hide();
+    $(".titre").hide();
+    $(".questRep-QuizQuest").hide()
+    $("#titre_thematique").hide()
+    $("#grid_thematique").hide()
+    $("#h1-scorePage").hide()
+    $("#h2-scorePage").hide()
+    $("#scoresJoueur-scorePage").hide()
+    $(".buttons-scorePage").hide()
 }
 
 // Page acceuil et Category
@@ -191,9 +208,10 @@ $(document).ready(function () {
             // onclick START overlay
             async function StartGame(){
                 let go = await $(document).on("click", "#overlay-start",  function () {
-                    let score = localStorage.getItem("score");
-                    let min = localStorage.getItem("min")
-                    let sec = localStorage.getItem("sec")
+                    $("header").hide()
+                    // let score = localStorage.getItem("score");
+                    // let min = localStorage.getItem("min")
+                    // let sec = localStorage.getItem("sec")
                     timer()
                     
                         //HIDE start button and show question and answers  
@@ -255,3 +273,57 @@ $(document).ready(function () {
     quizGame(quizzID)
   });
 });
+
+
+$(document).ready(function () {
+    $("#inscrire").on("click", function (e) {
+        e.preventDefault();
+        ShowInscription();
+    } )
+})
+
+$(document).ready(function (){
+    $("#inscription").on("click", function(e){
+        e.preventDefault();
+        localStorage.clear()
+
+        let    username =  $("#pseudo").val()
+        let    email = $("#email").val()
+        let  password = $("#password").val()
+        let verifPassword = $("#verifPassword").val()
+        // regexUsername
+        let emailPattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i
+        let usernamePattern = /^[a-zA-Z0-9_-]{5,15}$/;
+        if(!usernamePattern.test(username) ){
+            alert("Username Format incorrect, minimum 5 charcters and no symbols")
+        }else if(!emailPattern.test(email)){
+            alert("Email format invalid")
+        }else if(password.length < 8){
+            alert("Password length min 8 characters")
+        }else if( password !== verifPassword){
+            alert("Password not matching")
+        }else{
+            $.ajax({
+                url: "http://127.0.0.1:3000/Inscription",
+                type: "POST",
+                data: JSON.stringify({
+                    "Username": username, 
+                    "Email": email, 
+                    "Password": password 
+                }),
+                contentType: 'application/json',
+                processData: false,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res);
+                    
+                },
+                error: function(datas) {
+                    console.log(datas.responseText);
+                } 
+              
+            })
+        }
+    })
+    
+})
