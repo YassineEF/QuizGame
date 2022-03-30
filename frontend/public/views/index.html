@@ -33,23 +33,19 @@
         <!-- MENU  NAV -->
         <div class="nav">
             <ul class="menu-nav">
-                <li class="menu-nav_item">
-                    <a href="#" class="menu-nav_link">
-                      QUIZ  
-                    </a>
-                </li>
-                <li class="menu-nav_item">
-                    <a href="#" class="menu-nav_link" id="inscrire">
-                      S'INSCRIRE  
-                    </a>
-                </li>
-                <li class="menu-nav_item">
-                    <a href="#" class="menu-nav_link" id="connecter">
-                     SE CONNECTER 
-                    </a>
-                </li>
+              <li class="menu-nav_item">
+                <a href="#" class="menu-nav_link" id="dropdown"> QUIZ </a>
+                <ul class="sousmenu-nav hidden">
+                </ul>
+              </li>
+              <li class="menu-nav_item">
+                <a href="#" id="inscrire" class="menu-nav_link"> S'INSCRIRE </a>
+              </li>
+              <li class="menu-nav_item">
+                <a href="#" class="menu-nav_link"> SE CONNECTER </a>
+              </li>
             </ul>
-        </div>
+          </div>
     </header>
 
 
@@ -110,7 +106,7 @@
             </div>
 
             <div class="container" id="container">
-                <div class="form-container sign-up-container">
+                <!-- <div class="form-container sign-up-container">
                     <form  method="POST" id="inscriptionForm">
                         <h1>Créer un compte</h1>
                         <input class="no-outline" id="pseudo" type="text" placeholder="Pseudo" name="pseudo" />
@@ -142,6 +138,17 @@
                             <button class="ghost" id="signUpGhost">Je m'inscris !</button>
                         </div>
                     </div>
+                </div> -->
+                <div class="form-container sign-up-container" id="sign-up-container">
+                    <form action="#" >
+                        <h1>Créer un compte</h1>
+                        <input class="no-outline" id="pseudo" type="text" placeholder="Pseudo" />
+                        <input class="no-outline" id="email" type="email" placeholder="Email" />
+                        <input class="no-outline" id="password" type="password" placeholder="Mot de passe" />
+                        <input class="no-outline" id="verifPassword" type="password" placeholder="Mot de passe" />
+                        <div id="dejaCompte_signUpContainer"><a href="#">Déjà un compte ? Connecte-toi !</a></div>
+                        <button id="inscription">Je m'inscris !</button>
+                    </form>
                 </div>
             </div>
     </main>

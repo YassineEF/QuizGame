@@ -14,6 +14,7 @@ function showAcceuil(len,resp) {
     for (let i = 0; i < len; i++) {
       $(".categories").append(`<div class="categorie_image" id="${resp.thema[i].id}"><img src="./images/${resp.thema[i].id}.jpg" alt="img Categories">
               <p class="centered">${resp.thema[i].thématique}</p></div>`);
+        $(".sousmenu-nav ").append(`<li class="liSousmenu-nav" id="${resp.thema[i].id}"><a href="#" class="sousmenu-nav_link">${resp.thema[i].thématique} </a></li>`)
     }
 }
 
@@ -125,7 +126,7 @@ function scoreTable(scores, temp,numeroQuest) {
 
 function ShowInscription() {
     $("#container").show();
-    $(".sign-up-container").show();
+    $("#sign-up-container").show();
     $(".categories").hide();
     $(".titre").hide();
     $(".questRep-QuizQuest").hide()
@@ -168,7 +169,7 @@ $(document).on("click", ".buttonChoisis-scorePage", function(e){
 })
 // Page quiz par thématiques
 $(document).ready(function () {
-  $(document).on("click", ".categorie_image", function (e) {
+  $(document).on("click", ".categorie_image, .liSousmenu-nav", function (e) {
     e.preventDefault();
     let idCategory = $(this).attr("id");
     // localStorage.setItem("idCat", idCat)
