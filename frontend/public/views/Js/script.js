@@ -93,7 +93,11 @@ function timer(scores, mins, secs, numeroQuest) {
       $("#bravoDomm-QuizQuest").empty();
     }
   }, 1000); //1000
+ //function stopTimer() {
+   //clearInterval(time);
 }
+
+
 
 // Function show tableau de score
 function scoreTable(scores, temp, numeroQuest) {
@@ -107,20 +111,18 @@ function scoreTable(scores, temp, numeroQuest) {
   );
   if (scores <= 3) {
     $("#score").append(
-      `<h2 id="h2-scorePage"> T'es nul, apprends à lire et à écrire !</h2>`
+      `<h2 id="h2-scorePage"> Ne baisse jamais les bras ! Recommence !  </h2>`
     );
   } else if (scores <= 6) {
     $("#score").append(
-      `<h2 id="h2-scorePage"> Tu commence à apprendre, maintenant t'as le niveau d'un singe</h2>`
+      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score! </h2>`
     );
   } else if (scores <= 8) {
-    $("#score").append(
-      `<h2 id="h2-scorePage">Vous aussi suivez Grafikart?</h2>`
-    );
+    $("#score").append(`<h2 id="h2-scorePage">Félicitations !!! </h2>`);
   } else {
     // $("main").append(`<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) !</h2>`);
     $("#score").append(
-      `<h2 id="h2-scorePage">BRAVO ! Tu es tres proche du niveau de Yassine !</h2>`
+      `<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) ! </h2>`
     );
   }
   $("#score").append(
