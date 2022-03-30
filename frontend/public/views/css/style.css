@@ -593,7 +593,28 @@ a{
     text-shadow: 0rem 0.2rem 0.2rem #ffc334;
     margin: 1rem 0;
   }
-  .buttonChoisis-scorePage:hover {
+  .buttonChoisisQ-scorePage:hover {
+    font-size: 1.5rem;
+    border-radius: 6rem;
+    margin-bottom: 0.5rem;
+  }
+  .buttonChoisisQ-scorePage {
+    box-shadow: 0.2rem 0.2rem 0rem 0.2rem #ee9235;
+    background: linear-gradient(to top, #ffc334 5%, #ee9235 100%);
+    background-color: #ee9235;
+    border-radius: 1rem;
+    border: 0.1rem solid #ee9235;
+    display: inline-block;
+    color: #45467a;
+    font-family: "Ruda", sans-serif;
+    font-size: 1.2rem;
+    font-weight: 800;
+    padding: 0.5rem 2rem;
+    text-decoration: none;
+    text-shadow: 0rem 0.2rem 0.2rem #ffc334;
+    margin: 1rem 0;
+  }
+  .buttonChoisisQ-scorePage:hover {
     font-size: 1.5rem;
     border-radius: 6rem;
     margin-bottom: 0.5rem;
