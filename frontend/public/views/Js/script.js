@@ -62,6 +62,7 @@ function creationQuestionNumber(len){
 }
 let time = 0
 // fonction timer- QuizQuest
+
 function timer(scores,mins,secs,numeroQuest){
     const departMinutes = 3
     let temps = departMinutes * 60
@@ -122,6 +123,82 @@ function scoreTable(scores, temp,numeroQuest) {
     <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);  
     // $("#score").append(`<div class="buttons-scorePage"><a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
     // <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);  
+}
+    function timer(scores, mins, secs, numeroQuest) {
+  const departMinutes = 3;
+  let temps = departMinutes * 60;
+
+  const timerElement = document.getElementById("timeInNumbers-QuizQuest");
+
+  time = setInterval(() => {
+    let minutes = 0;
+    let secondes = 0;
+    minutes = parseInt(temps / 60, 10);
+    secondes = parseInt(temps % 60, 10);
+
+    localStorage.setItem("min", minutes);
+    localStorage.setItem("sec", secondes);
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    secondes = secondes < 10 ? "0" + secondes : secondes;
+
+    timerElement.innerText = `${minutes}:${secondes}`;
+    temps = temps <= 0 ? 0 : temps - 1;
+    localStorage.setItem("temps", temps);
+    if (temps == 0 && secondes == 0) {
+      clearInterval(time);
+      counterQuest = 0;
+      let score = 0;
+      score = localStorage.getItem("score");
+      let numeroQuest = localStorage.getItem("numeroQuest");
+      console.log(counterQuest);
+      console.log(numeroQuest);
+      scoreTable(score, temps, numeroQuest);
+      // scoreTable(score,minutes,secondes,numeroQuest)
+      $("#bravoDomm-QuizQuest").empty();
+    }
+  }, 1000); //1000
+ //function stopTimer() {
+   //clearInterval(time);
+}
+
+
+
+// Function show tableau de score
+function scoreTable(scores, temp, numeroQuest) {
+  // function scoreTable(scores, mins,secs,numeroQuest) {
+  $("header").show();
+  $("#topQuizQuest").hide();
+  $(".questRep-QuizQuest").hide();
+  $("#score").empty();
+  $("#score").append(
+    `<h1 id="h1-scorePage">DÉCOUVRE TES SCORES <br /> & <br />CEUX DES AUTRES JOUEURS</h1>`
+  );
+  if (scores <= 3) {
+    $("#score").append(
+      `<h2 id="h2-scorePage"> Ne baisse jamais les bras ! Recommence !  </h2>`
+    );
+  } else if (scores <= 6) {
+    $("#score").append(
+      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score! </h2>`
+    );
+  } else if (scores <= 8) {
+    $("#score").append(`<h2 id="h2-scorePage">Félicitations !!! </h2>`);
+  } else {
+    // $("main").append(`<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) !</h2>`);
+    $("#score").append(
+      `<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) ! </h2>`
+    );
+  }
+  $("#score").append(
+    ` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${
+      180 - temp
+    }</span> sec </h3></div>`
+  );
+  // $("#score").append(` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${mins}  </span>min<span id="tempsQuiz-scorePage"> ${secs}</span> sec </h3></div>`);
+  $("#score").append(`<div class="buttons-scorePage">
+    <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
+  // $("#score").append(`<div class="buttons-scorePage"><a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
+  // <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
 }
 
 function ShowInscription() {
@@ -349,6 +426,7 @@ $(document).ready(function () {
                 let temps = localStorage.getItem("temps")
                 if (counterQuest === numeroQuestion) {
                     setTimeout(() => {
+                        clearInterval(time)
                         scoreTable(score,temps,numeroQuestion)
                         // scoreTable(score,min,sec,numeroQuestion)
                         $("#bravoDomm-QuizQuest").empty()
