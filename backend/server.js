@@ -3,7 +3,6 @@ let cors = require("cors");
 let app = express();
 let categoryRouter = require("./routes/category.routes");
 let userRouter = require("./routes/user.routes");
-let jwt = require("jsonwebtoken");
 
 //Middelwares
 app.use(cors());
@@ -16,8 +15,9 @@ app.use("/CategoryQuiz:CategoryID", categoryRouter);
 app.use("/QuizQuestion:idQuiz", categoryRouter);
 
 //ROUTE USER
-app.use("/Inscription", userRouter);
+app.use("/", userRouter);
 
-app.listen(3005);
+
+app.listen(3000);
 
 module.exports = app;

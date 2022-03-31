@@ -127,6 +127,22 @@ function scoreTable(scores, temp,numeroQuest) {
 function ShowInscription() {
     $("#container").show();
     $("#sign-up-container").show();
+    $("#sign-in-container").hide();
+    $(".categories").hide();
+    $(".titre").hide();
+    $(".questRep-QuizQuest").hide()
+    $("#titre_thematique").hide()
+    $("#grid_thematique").hide()
+    $("#h1-scorePage").hide()
+    $("#h2-scorePage").hide()
+    $("#scoresJoueur-scorePage").hide()
+    $(".buttons-scorePage").hide()
+}
+
+function ShowConnection() {
+    $("#container").show();
+    $("#sign-in-container").show();
+    $("#sign-up-container").hide();
     $(".categories").hide();
     $(".titre").hide();
     $(".questRep-QuizQuest").hide()
@@ -154,6 +170,20 @@ $(document).ready(function () {
     });
 });
 
+$("#logo").on("click", function (e) {
+   
+    $(".categories").show();
+    $(".titre").show();
+    $(".questRep-QuizQuest").hide()
+    $("#titre_thematique").hide()
+    $("#grid_thematique").hide()
+    $("#h1-scorePage").hide()
+    $("#h2-scorePage").hide()
+    $("#scoresJoueur-scorePage").hide()
+    $(".buttons-scorePage").hide()
+    $("#container").hide();
+    $("#sign-up-container").hide();
+})
 
 
 $(document).on("click", ".buttonChoisis-scorePage", function(e){
@@ -165,7 +195,7 @@ $(document).on("click", ".buttonChoisis-scorePage", function(e){
         $("#scoresJoueur-scorePage").hide()
         $(".buttons-scorePage").hide()
         $(".questRep-QuizQuest").hide();
-     
+        localStorage.clear();
 })
 // Page quiz par thématiques
 $(document).ready(function () {
@@ -344,7 +374,7 @@ $(document).ready(function () {
   });
 });
 
-
+// Inscription
 $(document).ready(function () {
     $("#inscrire").on("click", function (e) {
         e.preventDefault();
@@ -386,7 +416,8 @@ $(document).ready(function (){
                 dataType: "json",
                 success: function (res) {
                     alert("Now you have an account")
-                    $("#container").show
+                    $("#sign-in-container").show();
+                    $("#sign-up-container").hide();
                     
                 },
                 error: function(datas) {
@@ -395,6 +426,47 @@ $(document).ready(function (){
               
             })
         }
+    })
+    
+})
+
+
+// Connection
+$(document).ready(function () {
+    $("#connect").on("click", function (e) {
+        e.preventDefault();
+        ShowConnection();
+    } )
+})
+
+
+$(document).ready(function (){
+    $("#connection").on("click", function(e){
+        e.preventDefault();
+        localStorage.clear()
+
+        let username =  $("#pseudoConn").val()
+        let password = $("#passwordConn").val()
+
+            $.ajax({
+                url: "http://127.0.0.1:3000/Connection",
+                type: "POST",
+                data: JSON.stringify({
+                    "Username": username, 
+                    "Password": password 
+                }),
+                contentType: 'application/json',
+                processData: false,
+                dataType: "json",
+                success: function (res) {
+                    alert("Now you are on")
+                    console.log(res);
+                },
+                error: function(datas) {
+                    alert(datas.responseText);
+                } 
+              
+            })
     })
     
 })
