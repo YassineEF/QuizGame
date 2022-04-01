@@ -1,5 +1,48 @@
 //FONCTION
+function HeaderPrincipale(){
+    let user = Cookies.get('token')
+    if (user) {
 
+        $(".menu-nav").html(` <li class="menu-nav_item">
+        <a href="#" class="menu-nav_link" id="dropdown"> QUIZ </a>
+        <ul class="sousmenu-nav hidden">
+        </ul>
+      </li>
+        <li class="menu-nav_item">
+          <a href="#" id="profile" class="menu-nav_link"> PROFILE </a>
+        </li>
+        <li class="menu-nav_item">
+          <a href="#" id="logout" class="menu-nav_link"> SE DECONNECTER</a>
+        </li>`)
+
+    }else{
+         $(".menu-nav").html(` <li class="menu-nav_item">
+         <a href="#" class="menu-nav_link" id="dropdown"> QUIZ </a>
+         <ul class="sousmenu-nav hidden">
+         </ul>
+       </li>
+        <li class="menu-nav_item">
+          <a href="#" id="inscrire" class="menu-nav_link"> S'INSCRIRE </a>
+        </li>
+        <li class="menu-nav_item">
+          <a href="#" id="connect" class="menu-nav_link"> SE CONNECTER </a>
+        </li>`)
+    }
+   
+}
+
+let dropdown = document.getElementById("dropdown");
+let sousMenuNav = document.querySelector(".sousmenu-nav");
+$(document).on("click", "#dropdown",function () {
+          if ($(".sousmenu-nav").hasClass("hidden") === true) {
+            
+            $(".sousmenu-nav").removeClass("hidden")
+            $(".sousmenu-nav").removeClass("visible")
+          } else {
+            $(".sousmenu-nav").addClass("hidden")
+        }
+        false
+    })
 
 //Fonction Page d'acceuil
 function showAcceuil(len,resp) {
@@ -9,6 +52,7 @@ function showAcceuil(len,resp) {
     $("#topQuizQuest").hide();
     $("#container").hide();
     $(".questRep-QuizQuest").hide()
+    $("#pagePerso").hide()
     // $(".questRep-QuizQuest").show()
     //Montrer les categories
     for (let i = 0; i < len; i++) {
@@ -30,7 +74,7 @@ function hideAcceuil() {
   //Montrer qu'il peux s'inscrire pendant 4s
   setTimeout(function () {
     $("#overlay_text").hide();
-  }, 1000); //4000
+  }, 4000); //4000
 }
 
 
@@ -60,43 +104,7 @@ function creationQuestionNumber(len){
         }
     }
 }
-let time = 0
-// fonction timer- QuizQuest
 
-function timer(scores,mins,secs,numeroQuest){
-    const departMinutes = 3
-    let temps = departMinutes * 60
-
-    const timerElement = document.getElementById("timeInNumbers-QuizQuest")
-
-    time = setInterval(() => {
-        let minutes = 0
-        let secondes = 0
-        minutes = parseInt(temps / 60, 10)
-        secondes = parseInt(temps % 60, 10)
-
-        localStorage.setItem("min", minutes)
-        localStorage.setItem("sec", secondes)
-        minutes = minutes < 10 ? "0" + minutes : minutes
-        secondes = secondes < 10 ? "0" + secondes : secondes
-        
-        timerElement.innerText = `${minutes}:${secondes}`
-        temps = temps <= 0 ? 0 : temps - 1
-        localStorage.setItem("temps", temps)
-        if(temps == 0 && secondes == 0){
-            clearInterval(time)
-            counterQuest = 0
-            let score = 0
-            score = localStorage.getItem("score")
-            let numeroQuest = localStorage.getItem("numeroQuest")
-            console.log(counterQuest);
-            console.log(numeroQuest);
-            scoreTable(score,temps,numeroQuest)
-            // scoreTable(score,minutes,secondes,numeroQuest)
-            $("#bravoDomm-QuizQuest").empty()
-        }
-    }, 1000)  //1000
-}
 
 
 // Function show tableau de score
@@ -124,7 +132,8 @@ function scoreTable(scores, temp,numeroQuest) {
     // $("#score").append(`<div class="buttons-scorePage"><a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
     // <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);  
 }
-    function timer(scores, mins, secs, numeroQuest) {
+let time= 0
+function timer(scores, mins, secs, numeroQuest) {
   const departMinutes = 3;
   let temps = departMinutes * 60;
 
@@ -231,10 +240,14 @@ function ShowConnection() {
     $(".buttons-scorePage").hide()
 }
 
+function PagePerso(response){
+    $("#titrePagePerso").append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${response.user[0].username}</span> ! </h1>
+    <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`)
+}
 
 // Page acceuil et Category
 $(document).ready(function () {
-
+    HeaderPrincipale()
     $.ajax({
         url: "http://127.0.0.1:3000",
         type: "GET",
@@ -243,12 +256,13 @@ $(document).ready(function () {
         success: function (res) {
             let length = res.thema.length;
             showAcceuil(length,res)
+
         },
     });
 });
 
 $("#logo").on("click", function (e) {
-   
+    HeaderPrincipale()
     $(".categories").show();
     $(".titre").show();
     $(".questRep-QuizQuest").hide()
@@ -265,19 +279,24 @@ $("#logo").on("click", function (e) {
 
 $(document).on("click", ".buttonChoisis-scorePage", function(e){
     e.preventDefault()
+    HeaderPrincipale()
     $(".categories").show();
     $(".titre").show();
-        $("#h1-scorePage").hide()
-        $("#h2-scorePage").hide()
-        $("#scoresJoueur-scorePage").hide()
-        $(".buttons-scorePage").hide()
-        $(".questRep-QuizQuest").hide();
+    $("#h1-scorePage").hide()
+    $("#h2-scorePage").hide()
+    $("#scoresJoueur-scorePage").hide()
+    $(".buttons-scorePage").hide()
+    $(".questRep-QuizQuest").hide();
         localStorage.clear();
 })
 // Page quiz par thématiques
 $(document).ready(function () {
   $(document).on("click", ".categorie_image, .liSousmenu-nav", function (e) {
     e.preventDefault();
+    HeaderPrincipale()
+    $("#container").hide();
+    $("#sign-up-container").hide();
+    $("#sign-in-container").hide();
     let idCategory = $(this).attr("id");
     // localStorage.setItem("idCat", idCat)
     // let idCategory = localStorage.getItem("idCat")
@@ -312,6 +331,7 @@ $(document).ready(function () {
 
 $(document).on("click", ".buttonChoisisQ-scorePage", function(e){
     e.preventDefault()
+    HeaderPrincipale()
     $("#background_img").show();
     $("#grid_thematique").show();
         $("#h1-scorePage").empty()
@@ -328,6 +348,7 @@ $(document).on("click", ".buttonChoisisQ-scorePage", function(e){
 $(document).ready(function () {
   $(document).on("click", ".quiz_div, #buttonRejoue-scorePage", function (e) {
     e.preventDefault();
+    HeaderPrincipale()
     let quizzID = $(this).attr("id");
     async function quizGame(quizID){
 
@@ -435,8 +456,8 @@ $(document).ready(function () {
                     
                 }
             });
-            let min = localStorage.getItem("min")
-            let sec = localStorage.getItem("sec")
+            // let min = localStorage.getItem("min")
+            // let sec = localStorage.getItem("sec")
             
             // if(times == "0"){
             //     console.log("Hello");
@@ -454,7 +475,7 @@ $(document).ready(function () {
 
 // Inscription
 $(document).ready(function () {
-    $("#inscrire").on("click", function (e) {
+    $(document).on("click","#inscrire,  #inscriptionAcc",function (e) {
         e.preventDefault();
         ShowInscription();
     } )
@@ -464,7 +485,6 @@ $(document).ready(function (){
     $("#inscription").on("click", function(e){
         e.preventDefault();
         localStorage.clear()
-
         let username =  $("#pseudo").val()
         let email = $("#email").val()
         let password = $("#password").val()
@@ -511,10 +531,10 @@ $(document).ready(function (){
 
 // Connection
 $(document).ready(function () {
-    $("#connect").on("click", function (e) {
+    $(document).on("click", "#connect, #dejaCompte_signUpContainer" ,function (e) {
         e.preventDefault();
         ShowConnection();
-    } )
+    })
 })
 
 
@@ -525,10 +545,10 @@ $(document).ready(function (){
 
         let username =  $("#pseudoConn").val()
         let password = $("#passwordConn").val()
-
+        console.log();
             $.ajax({
-                url: "http://127.0.0.1:3000/Connection",
                 type: "POST",
+                url: "http://127.0.0.1:3000/Connection",
                 data: JSON.stringify({
                     "Username": username, 
                     "Password": password 
@@ -537,8 +557,15 @@ $(document).ready(function (){
                 processData: false,
                 dataType: "json",
                 success: function (res) {
-                    alert("Now you are on")
                     console.log(res);
+                    let idUser = res.user[0].id;
+                    Cookies.set('token', res.token);
+                    sessionStorage.setItem('idUser', idUser)
+                    HeaderPrincipale()
+                    PagePerso(res)
+                    $("#container").hide()
+                    $("#pagePerso").show()
+                    // location.reload()
                 },
                 error: function(datas) {
                     alert(datas.responseText);
@@ -548,3 +575,23 @@ $(document).ready(function (){
     })
     
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let user = Cookies.get('token')
+                    // if (user) {
+                    //     console.log("1");
+                    // }

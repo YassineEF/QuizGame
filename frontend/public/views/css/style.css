@@ -4,6 +4,7 @@
   /* text-align: center; */
   box-sizing: border-box;
 }
+
 body {
   background-image: conic-gradient(
     from 65deg at -5% 30%,
@@ -13,14 +14,15 @@ body {
     rgba(255, 255, 255, 0) 270deg,
     rgba(121, 122, 181, 0.9) 0deg
   );
-  /* background-repeat: no-repeat;
-    height: 100vh ; */
+
   background-repeat: no-repeat;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   font-family: "Ruda", sans-serif;
-  height: 100vh;
+  /* min-height: 110vh; */
+  height: 115vh;
+
 }
 
 /* Header */
@@ -28,19 +30,22 @@ header {
   background-color: #45467a;
   display: flex;
 }
+
 /* LOGO */
 #logo {
   margin-left: 1rem;
   padding-bottom: 1rem;
   cursor: pointer;
 }
+
 #logo img {
   height: 4rem;
 }
+
 /* Menu BURGER */
 .menu-btn {
   position: absolute;
-  z-index: 1;
+  z-index: 999;
   right: 3rem;
   top: 1.5rem;
   height: 40px;
@@ -48,6 +53,7 @@ header {
   cursor: pointer;
   transition: all 0.5s ease-in-out;
 }
+
 .menu-btn_burger {
   position: absolute;
   right: 0;
@@ -57,6 +63,7 @@ header {
   background: #b1b3c9;
   transition: all 0.5s ease-in-out;
 }
+
 .menu-btn_burger::before {
   content: "";
   position: absolute;
@@ -66,6 +73,7 @@ header {
   background: #d8d8ea;
   transition: all 0.5s ease-in-out;
 }
+
 .menu-btn_burger::after {
   content: "";
   position: absolute;
@@ -75,17 +83,21 @@ header {
   background: #d8d8ea;
   transition: all 0.5s ease-in-out;
 }
+
 .menu-btn_burger.open {
   transform: rotate(720deg);
   background: transparent;
 }
+
 .menu-btn_burger.open::before {
   transform: rotate(45deg) translate(14px, 8px);
 }
+
 .menu-btn_burger.open::after {
   width: 40px;
   transform: rotate(-45deg) translate(10px, -4px);
 }
+
 /* MENU */
 .nav {
   /* position: fixed;
@@ -94,10 +106,13 @@ header {
   /* width: 100%; */
   opacity: 0.98;
   visibility: hidden;
+  z-index: 99;
 }
+
 .nav.open {
   visibility: visible;
 }
+
 .nav .menu-nav {
   position: absolute;
   top: 0.5rem;
@@ -116,20 +131,23 @@ header {
   border: 0.1rem solid #d8d8ea;
   padding: 0.5 1.5rem;
 }
+
 .nav .menu-nav.open {
   transform: translateY(0);
-  width: 100vh;
+  width: 30vh;
+  z-index: 1000;
+  left: 255px;
 }
+
 .nav .menu-nav_item {
   transform: translateX(100vw);
   transition: all 0.5s ease-in-out;
 }
+
 .nav .menu-nav_item.open {
   transform: translateX(0);
 }
-/* .nav .menu-nav_item.active > a {
-      color: #03A062;
-  } */
+
 .nav .menu-nav_link {
   display: inline-block;
   font-size: 1.5rem;
@@ -145,6 +163,7 @@ header {
   text-decoration: none;
   font-family: "Ruda", sans-serif;
 }
+
 /* .nav .menu-nav_link:hover {
       color: #03A062;
   } */
@@ -186,11 +205,18 @@ header {
   text-align: justify;
   padding: 0 0 0 1rem;
 }
+
 .sousmenu-nav_link {
-  color: #86b026;
+  color:#d8d8ea4d;
   text-decoration: none;
   font-size: 1.2rem;
 }
+
+.sousmenu-nav_link:hover {
+  color:#d8d8ea;
+  background-color: #2a2c66;
+}
+
 .sousmenu-nav_link .liSousmenu-nav .menu-nav_link {
   display: block;
   text-align: justify;
@@ -212,21 +238,25 @@ main {
   padding: 2rem 0;
   margin: 0 2rem;
 }
+
 .titre h1 {
   font-size: 2rem;
   margin-bottom: 1rem;
 }
+
 .titre h3 {
   font-size: 1.25rem;
   margin-bottom: 1rem;
   letter-spacing: 0.3rem;
   font-weight: 300;
 }
+
 .titre h5 {
   font-family: "Ruda", sans-serif;
   font-size: 1rem;
   margin-bottom: 1rem;
 }
+
 .titre h5 a {
   color: #a7d72e;
 }
@@ -243,11 +273,13 @@ a {
   grid-template-rows: repeat(6, 1fr);
   text-align: center;
 }
+
 .categories .categorie_image img {
   height: 150px;
   width: 300px;
   border-radius: 50px;
 }
+
 .categories .categorie_image {
   position: relative;
   text-align: center;
@@ -255,6 +287,7 @@ a {
   opacity: 1;
   cursor: pointer;
 }
+
 .centered {
   position: absolute;
   top: 50%;
@@ -272,12 +305,14 @@ a {
   width: 300px;
   border-radius: 50px;
 }
+
 #background_img {
   position: relative;
   text-align: center;
   opacity: 1;
   cursor: pointer;
 }
+
 #background_img .centered {
   position: absolute;
   top: 50%;
@@ -291,9 +326,11 @@ a {
 
 .quiz_div {
   height: 70px;
-  background-color: #938372;
+  background-color: #45467a;
   border-top-left-radius: 7%;
   border-bottom-left-radius: 5%;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
   margin: 0 auto;
   margin-top: 50px;
   position: relative;
@@ -309,8 +346,9 @@ a {
 .centered_Quiz {
   text-align: center;
   padding-top: 7%;
-  color: white;
+  color: #d8d8ea;
   top: 100px;
+  font-size: 1.2rem;
 }
 
 /* GRID CATEGORIES THEMATIQUE */
@@ -321,18 +359,21 @@ a {
   width: 300px;
   margin-left: 20%;
 }
+
 #overlay_inscription > h2 {
   color: #ffc334;
   margin: 0 3rem;
   font-family: "Russo One";
-  font-size: 3rem;
+  font-size: 1.8rem;
+  letter-spacing: 0.5rem;
   text-align: center;
   position: absolute;
   z-index: 30000;
   background-color: #45467a;
-  opacity: 80%;
-  border-radius: 5%;
+  opacity: 90%;
+  border-radius: 3rem;
 }
+
 /* TIMER + thematique box*/
 #topQuizQuest {
   margin: 0 auto;
@@ -346,6 +387,7 @@ a {
   align-items: center;
   text-align: center;
 }
+
 .timer-QuizQuest {
   grid-column: 1;
   width: 6rem;
@@ -355,6 +397,7 @@ a {
   text-align: center;
   display: inline-flex;
 }
+
 #timeInNumbers-QuizQuest {
   font-family: "Russo One", sans-serif;
   font-weight: 300;
@@ -385,6 +428,7 @@ a {
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
 /*Nom du quiz*/
 .quizName-QuizQuest {
   grid-column: 2;
@@ -393,6 +437,7 @@ a {
   color: #ffc334;
   font-size: 1.5rem;
 }
+
 /*progression questions*/
 #ul-compteurQuest-QuizQuest {
   grid-column: 2;
@@ -412,12 +457,13 @@ a {
   font-family: "ruda", sans-serif;
   font-size: 0.7rem;
 }
+
 /*overlay article question rps*/
 #overlay-QuizQuest {
   position: absolute;
   margin: 0 auto;
   width: 100%;
-  height: 100%;
+  height: 650px;
   /* display: inline-block; */
   background-color: #45467a;
   opacity: 90%;
@@ -427,14 +473,16 @@ a {
   font-size: 5rem;
   text-align: center;
 }
+
 #overlay-start {
   position: absolute;
   font-size: 5rem;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
 }
+
 /*- - - - - Section question + réponses */
 .questRep-QuizQuest {
   margin: 0 auto;
@@ -463,9 +511,10 @@ a {
   justify-content: center;
   align-content: center;
 }
+
 .question-QuizQuest {
   margin: 0 auto;
-  width: 20rem;
+  width: auto;
   height: auto;
   padding: 0.5rem;
   color: #d8d8ea;
@@ -491,16 +540,19 @@ a {
   cursor: pointer;
   padding-top: 20px;
 }
+
 .grid-itemQq:hover {
   background-color: #d8d8ea;
   border: 0.5rem solid #6667ab;
   color: #45467a;
 }
+
 /* boxes "bravo" "dommage" */
 #bravoDomm-QuizQuest {
   margin: 2rem auto;
   text-align: center;
 }
+
 .bravo-QuizQuest {
   box-shadow: 0.2rem 0.2rem 0rem 0.2rem #86b026;
   background: linear-gradient(to top, #a7d72e 5%, #86b026 100%);
@@ -517,6 +569,7 @@ a {
   text-shadow: 0rem 0.2rem 0.2rem #a7d72e;
   /* display: none; */
 }
+
 .dommage-QuizQuest {
   box-shadow: 0.2rem 0.2rem 0rem 0.2rem #ee9235;
   background: linear-gradient(to top, #ffc334 5%, #ee9235 100%);
@@ -544,6 +597,7 @@ a {
   padding: 1rem 0;
   margin-bottom: 1rem;
 }
+
 #h2-scorePage {
   font-family: "Ruda", sans-serif;
   font-size: 1.7rem;
@@ -563,12 +617,15 @@ a {
   text-align: center;
   padding: 1rem;
 }
+
 #scoreSurDix-scorePage {
   color: #86b026;
 }
+
 #tempsQuiz-scorePage {
   color: #86b026;
 }
+
 .buttons-scorePage {
   margin: 0.5rem auto;
   text-align: center;
@@ -590,6 +647,7 @@ a {
   text-shadow: 0rem 0.2rem 0.2rem #a7d72e;
   margin: 1.5rem 0;
 }
+
 #buttonRejoue-scorePage:hover {
   box-shadow: 0.2rem 0.2rem 0rem 0.2rem #86b026;
   background: linear-gradient(to top, #a7d72e 5%, #86b026 100%);
@@ -623,11 +681,13 @@ a {
   text-shadow: 0rem 0.2rem 0.2rem #ffc334;
   margin: 1rem 0;
 }
+
 .buttonChoisisQ-scorePage:hover {
   font-size: 1.5rem;
   border-radius: 6rem;
   margin-bottom: 0.5rem;
 }
+
 .buttonChoisisQ-scorePage {
   box-shadow: 0.2rem 0.2rem 0rem 0.2rem #ee9235;
   background: linear-gradient(to top, #ffc334 5%, #ee9235 100%);
@@ -644,6 +704,7 @@ a {
   text-shadow: 0rem 0.2rem 0.2rem #ffc334;
   margin: 1rem 0;
 }
+
 .buttonChoisis-scorePage:hover {
   font-size: 1.5rem;
   border-radius: 6rem;
@@ -662,6 +723,7 @@ a {
   z-index: -50;
   margin: 5% 15%;
 }
+
 #sign-up-container {
   grid-row: 1;
   padding: 1rem;
@@ -671,10 +733,12 @@ a {
   box-shadow: 28px 14px 30px rgba(0, 0, 0, 0.25),
     10px 10px 10px rgba(0, 0, 0, 0.22);
 }
+
 #dejaCompte_signUpContainer {
   margin: 1rem 0;
   font-weight: 400;
 }
+
 @keyframes show {
   0%,
   49.99% {
@@ -696,6 +760,7 @@ a {
   padding: 0.5rem 0 2rem 0;
   text-align: center;
 }
+
 #container a {
   color: #ffc334;
   font-size: 1rem;
@@ -715,9 +780,11 @@ a {
   text-transform: uppercase;
   margin-top: 1.5rem;
 }
+
 #container button:focus {
   outline: none;
 }
+
 form #sign-up-container #sign-in-container {
   background-color: #45467a;
   align-items: center;
@@ -739,6 +806,7 @@ form #sign-up-container #sign-in-container {
   border-radius: 2rem;
   text-align: center;
 }
+
 #container input[type="text"] {
   box-sizing: border-box;
   border: 2px solid #86b026;
@@ -746,14 +814,17 @@ form #sign-up-container #sign-in-container {
 /* .no-outline:focus {
     outline: none;
 } */
+
 #container input[type="email"] {
   box-sizing: border-box;
   border: 2px solid #86b026;
 }
+
 #container input[type="password"] {
   box-sizing: border-box;
   border: 2px solid #86b026;
 }
+
 #container input::placeholder {
   color: #d8d8ea;
   font-size: 1rem;
@@ -763,46 +834,202 @@ form #sign-up-container #sign-in-container {
 #sign-in-container {
   background-color: #45467a;
   grid-row: 2;
-  xvisibility: hidden;
   padding: 1rem;
-  xdisplay: none;
   border-radius: 2rem;
 }
+
+/* - - - - -PAGE PERSO - historique des scores + jouer + modifier + créer*/
+#titrePagePerso {
+  margin: 2rem 3rem;
+  text-align: center;
+}
+#bonjourPagePerso {
+  font-size: 3rem;
+  letter-spacing: 0.4rem;
+  font-family: "russo one", sans-serif;
+  color: #2a2c66;
+  margin: 1rem auto;
+}
+#spanBonjourPagePerso {
+  color: #86b026;
+}
+#bienvenuePagePerso {
+  font-size: 2rem;
+  color: #2a2c66;
+  margin: 1rem auto;
+}
+#buttonsCreerModifier {
+  display: flex;
+  vertical-align: middle;
+  text-align: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+#buttonCreeQuiz-pagePerso {
+  text-align: center;
+  width: 13rem;
+  font-size: 1.3rem;
+  margin-left: 2rem;
+  float: left;
+  box-shadow: 0.2rem 0.2rem 0rem 0.2rem #86b026;
+  background: linear-gradient(to top, #a7d72e 5%, #86b026 100%);
+  background-color: #a7d72e;
+  border-radius: 1rem;
+  border: 0.1rem solid #86b026;
+  xdisplay: inline-block;
+  color: #45467a;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  padding: 1rem 3.5rem;
+  text-decoration: none;
+  text-shadow: 0rem 0.2rem 0.2rem #a7d72e;
+  xdisplay: none;
+}
+#buttonModifieQuiz-pagePerso {
+  width: 13rem;
+  text-align: center;
+  margin-right: 2rem;
+  font-size: 1.3rem;
+  float: right;
+  box-shadow: 0.2rem 0.2rem 0rem 0.2rem #ee9235;
+  background: linear-gradient(to top, #ffc334 5%, #ee9235 100%);
+  background-color: #ee9235;
+  border-radius: 1rem;
+  border: 0.1rem solid #ee9235;
+  xdisplay: inline;
+  color: #45467a;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  text-shadow: 0rem 0.2rem 0.2rem #ffc334;
+  xdisplay: none;
+}
+#table-pagePerso {
+  margin: 2rem auto;
+  font-family: "Ruda", sans-serif;
+  width: 30rem;
+}
+
+#thead-pagePerso {
+  background-color: #45467a;
+  padding: 1rem;
+  color: #d8d8ea;
+  font-family: "Ruda", sans-serif;
+  font-size: 1.4rem;
+}
+#topTable-pagePerso {
+  font-size: 1.2rem;
+}
+
+#topFive-pagePerso {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+.tr-topTable-pagePerso {
+  background-color: #d8d8ea;
+  color: #86b026;
+  text-align: center;
+}
+.topTable-pagePerso {
+  border: 0.2rem solid #d8d8ea;
+  padding: 0.3rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.tr-oddRow-pagePerso {
+  border: none;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  background-color: #45467a;
+  color: #d8d8ea;
+}
+.oddRow-pagePerso {
+  padding: 0.3rem;
+}
+.tr-evenRow-pagePerso {
+  border: none;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  background-color: #d8d8ea;
+  color: #45467a;
+  padding: 1rem;
+}
+.evenRow-pagePerso {
+  padding: 0.2rem;
+}
+
+.buttonBottom-pagePerso {
+  display: block;
+}
+.buttonChoisis-pagePerso {
+  width: 30rem;
+  font-size: 1.3rem;
+  box-shadow: 0.2rem 0.2rem 0rem 0.2rem #ee9235;
+  background: linear-gradient(to top, #ffc334 5%, #ee9235 100%);
+  background-color: #ee9235;
+  border-radius: 1rem;
+  border: 0.1rem solid #ee9235;
+  display: block;
+  color: #45467a;
+  font-family: "Ruda", sans-serif;
+  font-weight: 700;
+  padding: 0.5rem 2rem;
+  text-decoration: none;
+  text-shadow: 0rem 0.2rem 0.2rem #ffc334;
+  text-align: center;
+  margin: 0 auto;
+}
+
 @media screen and (min-width: 768px) {
+
+  body {
+    overflow-x: hidden;
+    overflow-y: hidden;
+    /* min-height: auto; */
+    height: 101vh;
+  }
+
   #logo img {
     height: 8rem;
   }
+
   .menu-btn {
     display: none;
   }
+
   .menu-btn_burger {
     display: none;
   }
+
   .nav {
     visibility: visible;
     position: sticky;
   }
+
   .nav .menu-nav {
     display: block;
     transform: translateY(0);
-    /* transform: translateX(20%); */
+    transform: translateX(20%);
     height: 100%;
     background: transparent;
     text-align: right;
     border: none;
-    /* margin-top: 5%; */
-    top: 15%;
+    top: 20%;
   }
 
   .nav .menu-nav_item {
     display: inline;
     padding-right: 1rem;
   }
+
   .nav .menu-nav_link {
     font-size: 1.2rem;
     background-color: #d8d8ea;
     color: #45467a;
   }
+
   /*media queries - sous-menu*/
   .sousmenu-nav {
     display: flex;
@@ -810,16 +1037,19 @@ form #sign-up-container #sign-in-container {
     position: absolute;
     top: 75px;
     left: -150px;
-    transform: translateX(40%);
+    transform: translateX(45%);
     float: left;
+    text-align: center;
   }
 
   .hidden {
     display: none;
   }
+
   .visible {
     display: visible;
   }
+
   .sousmenu-nav_link {
     font-size: 1.4rem;
     font-weight: 300;
@@ -831,6 +1061,7 @@ form #sign-up-container #sign-in-container {
     font-family: "ruda", sans-serif;
     padding: 0.2rem 0.6rem 0 0.3rem;
     opacity: 90%;
+    color:#d8d8ea4d;
   }
 
   .liSousmenu-nav {
@@ -839,42 +1070,61 @@ form #sign-up-container #sign-in-container {
   }
 
   .sousmenu-nav_link:hover {
-    color: #ffc334;
+  color: #d8d8ea;
+    background-color: #45467a;
+    border-radius: 1rem;
+    border:0.3rem solid #565791;
   }
 
   /* #dropdown:focus {
         background-color: #45467a;
         color: #d8d8ea;
       } */
+
   .titre h1 {
-    font-size: 3rem;
+    font-size: 4rem;
+    letter-spacing: 0.3rem;
+    padding: 1.3rem 0;
   }
+
+  #bienvenue_pageAccueil{
+    font-size: 4rem;
+    color:#45467a;
+  }
+
   .titre h3 {
     font-size: 2rem;
   }
+
   .titre h5 {
     font-size: 1.5rem;
     letter-spacing: 0.2rem;
+
+    margin-bottom: -1rem;
   }
+
   .categories {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(2, 1fr);
     text-align: center;
   }
+
   .categories .categorie_image img {
     height: 200px;
     width: 400px;
     border-radius: 50px;
   }
+
   .categories .categorie_image {
     position: relative;
     text-align: center;
-    margin: 2.3rem 0;
+    margin: 1.5rem 0;
     opacity: 1;
   }
 
   /* RFO */
+
   #titre_thematique {
     width: 556px;
     border-radius: 60px;
@@ -884,24 +1134,15 @@ form #sign-up-container #sign-in-container {
     width: 450px;
   }
 
-  #grid_thematique {
-    /* GRID */
-    color: white;
-    display: grid;
-    grid-gap: 20px;
-    text-align: center;
-    margin-left: 17%;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(4, 1fr);
-  }
-
   /* Visuel des bannières */
   .quiz_div {
     height: 70px;
     width: 500px;
-    background-color: #938372;
+    background-color: #45467a;
     border-top-left-radius: 10%;
     border-bottom-left-radius: 10%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
     position: relative;
   }
 
@@ -921,9 +1162,10 @@ form #sign-up-container #sign-in-container {
   /* Centrage du texte dans les bannières */
   .centered_Quiz {
     text-align: center;
-    padding-top: 5%;
-    color: white;
+    padding-top: 4.5%;
+    color: #d8d8ea;
     top: 100px;
+    font-size: 1.5rem;
   }
 
   /* Overlay */
@@ -931,34 +1173,38 @@ form #sign-up-container #sign-in-container {
     position: absolute;
     margin: 0 auto;
     width: 100%;
-    /* height: 100%;
-        background:rgba(121, 122, 181, 0.90); */
     cursor: pointer;
   }
 
   #overlay_inscription > h2 {
     color: #ffc334;
-    margin: 0 3rem;
+    margin: 0 18rem;
     font-family: "Russo One";
     font-size: 4rem;
     text-align: center;
     position: absolute;
     z-index: 30000;
     background-color: #45467a;
-    opacity: 80%;
+    opacity: 90%;
+    height: 500px;
+    padding-top: 50px;
   }
+
   .timer-QuizQuest {
     width: 12rem;
     height: 12rem;
     border-radius: 12rem;
   }
+
   #timeInNumbers-QuizQuest {
     font-size: 3rem;
   }
+
   .thematBox-QuizQuest {
     grid-column: 3;
     width: 15rem;
   }
+
   .thematImg-QuizQuest {
     width: 15rem;
     height: auto;
@@ -968,7 +1214,9 @@ form #sign-up-container #sign-in-container {
     font-family: "Ruda", sans-serif;
     font-size: 2rem;
     font-weight: 600;
+    z-index: -1;
   }
+
   /*Nom du quiz*/
   .quizName-QuizQuest {
     font-size: 3.2rem;
@@ -977,20 +1225,24 @@ form #sign-up-container #sign-in-container {
   .li-numeroQuest-QuizQuest {
     font-size: 2rem;
   }
+
   /*Overlay*/
   #overlay-QuizQuest {
     border-radius: 7rem;
   }
+
   /*- - - - - Section question + réponses */
   .question-QuizQuest {
     width: auto;
     font-size: 4rem;
   }
+
   .questRep-QuizQuest {
     margin: 0 auto;
     margin-top: 0.5rem;
     padding: 2rem 10rem;
   }
+
   .gridContainer-QuizQuest {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -998,6 +1250,7 @@ form #sign-up-container #sign-in-container {
     margin-top: 2rem;
     /* gap: 2rem; */
   }
+
   .grid-itemQq {
     background-color: #45467a;
     text-align: center;
@@ -1009,6 +1262,7 @@ form #sign-up-container #sign-in-container {
     align-content: center;
     padding-top: 20px;
   }
+
   .question-QuizQuest {
     width: auto;
     margin: 0 auto;
@@ -1019,6 +1273,7 @@ form #sign-up-container #sign-in-container {
     font-size: 3rem;
     font-weight: 500;
   }
+
   /*page scores*/
   #h1-scorePage {
     font-family: "Russo one", sans-serif;
@@ -1026,9 +1281,10 @@ form #sign-up-container #sign-in-container {
     font-size: 2.5rem;
     letter-spacing: 0.2rem;
     text-align: center;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
     margin-bottom: 1rem;
   }
+
   #h2-scorePage {
     font-family: "Ruda", sans-serif;
     font-size: 2rem;
@@ -1036,6 +1292,7 @@ form #sign-up-container #sign-in-container {
     color: #86b026;
     margin-bottom: 2.5rem;
   }
+
   #scoresJoueur-scorePage {
     width: 50rem;
     background-color: #45467a;
@@ -1047,7 +1304,101 @@ form #sign-up-container #sign-in-container {
     text-align: center;
     padding: 1rem;
   }
+
   #container {
     margin: 5% 30%;
   }
+   /*media queries - - - tableau des scores */
+   #table-scorePage {
+    margin: 2rem auto;
+    font-family: "Ruda", sans-serif;
+    width: 50rem;
+  }
+
+  #thead-scorePage {
+    background-color: #45467a;
+    padding: 1rem;
+    color: #d8d8ea;
+    font-family: "Ruda", sans-serif;
+    font-size: 1.7rem;
+  }
+  #topTable-scorePage {
+    font-size: 1.5rem;
+  }
+
+  #topFive-scorePage {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .tr-topTable-scorePage {
+    background-color: #d8d8ea;
+    color: #86b026;
+    text-align: center;
+  }
+  .topTable-scorePage {
+    border: 0.2rem solid #d8d8ea;
+    padding: 0.3rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+  .tr-oddRow-scorePage {
+    border: none;
+    padding: 0.7rem;
+    font-size: 1.3rem;
+    background-color: #45467a;
+    color: #d8d8ea;
+  }
+  .oddRow-scorePage {
+    padding: 0.3rem;
+  }
+  .tr-evenRow-scorePage {
+    border: none;
+    padding: 0.7rem;
+    font-size: 1.3rem;
+    background-color: #d8d8ea;
+    color: #45467a;
+    padding: 1rem;
+  }
+  .evenRow-scorePage {
+    padding: 0.2rem;
+  }
+
+  #bonjourPagePerso {
+    font-size: 3.5rem;
+
+    margin: 1.5rem auto;
+  }
+
+  #bienvenuePagePerso {
+    font-size: 3rem;
+  }
+
+  #buttonCreeQuiz-pagePerso {
+    text-align: center;
+    width: 16rem;
+    font-size: 1.5rem;
+    margin-left: 10rem;
+  }
+
+  #buttonModifieQuiz-pagePerso {
+    width: 16rem;
+    text-align: center;
+    margin-right: 10rem;
+    font-size: 1.5rem;
+  }
+
+  #thead-pagePerso {
+    font-size: 2rem;
+  }
+  #table-pagePerso {
+    margin: 3rem auto;
+    font-family: "Ruda", sans-serif;
+    width: 60rem;
+  }
+
+  .buttonChoisis-pagePerso {
+    width: 60rem;
+    font-size: 1.5rem;
+  }
+
 }

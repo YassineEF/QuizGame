@@ -45,15 +45,15 @@ function toggleMenu(){
 // });
 
 
-let dropdown = document.getElementById("dropdown");
-let sousMenuNav = document.querySelector(".sousmenu-nav");
-dropdown.addEventListener("click", function () {
-          if (sousMenuNav.classList.contains("hidden") === true) {
-            sousMenuNav.classList.remove("hidden");
-            sousMenuNav.classList.remove("visible");
-          } else {
-            sousMenuNav.classList.add("hidden");
-          }
-        },
-        false
-      );
+// let dropdown = document.getElementById("dropdown");
+// let sousMenuNav = document.querySelector(".sousmenu-nav");
+// dropdown.addEventListener("click", function () {
+//           if (sousMenuNav.classList.contains("hidden") === true) {
+//             sousMenuNav.classList.remove("hidden");
+//             sousMenuNav.classList.remove("visible");
+//           } else {
+//             sousMenuNav.classList.add("hidden");
+//           }
+//         },
+//         false
+//       );
