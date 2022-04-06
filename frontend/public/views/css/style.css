@@ -21,7 +21,7 @@ body {
   flex-direction: column;
   font-family: "Ruda", sans-serif;
   /* min-height: 110vh; */
-  height: 115vh;
+  min-height: 100%;
 
 }
 
@@ -164,10 +164,6 @@ header {
   font-family: "Ruda", sans-serif;
 }
 
-/* .nav .menu-nav_link:hover {
-      color: #03A062;
-  } */
-
 .nav .menu-nav_item:first-child .menu-nav_link {
   -webkit-border-top-left-radius: 24px;
   -webkit-border-bottom-left-radius: 24px;
@@ -224,9 +220,6 @@ header {
 
 /* MAIN */
 main {
-  /* background: conic-gradient(from 60deg at -5% 20%, rgba(121, 122, 181, 0.90) 10deg, rgba(107, 108, 174, 1) 0deg, #6667AB 0deg, rgba(255, 255, 255, 0) 270deg, rgba(121, 122, 181, 0.90) 0deg);
-    background-repeat: no-repeat;
-    height: 100%;*/
   z-index: -1;
 }
 
@@ -239,10 +232,16 @@ main {
   margin: 0 2rem;
 }
 
-.titre h1 {
+.bienvenue {
   font-size: 2rem;
   margin-bottom: 1rem;
+  color: #45467a;
 }
+
+/* .titre h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+} */
 
 .titre h3 {
   font-size: 1.25rem;
@@ -372,6 +371,8 @@ a {
   background-color: #45467a;
   opacity: 90%;
   border-radius: 3rem;
+  height: 619px;
+  /* width: 100%; */
 }
 
 /* TIMER + thematique box*/
@@ -472,6 +473,8 @@ a {
   font-family: "Russo One";
   font-size: 5rem;
   text-align: center;
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
 }
 
 #overlay-start {
@@ -805,15 +808,15 @@ form #sign-up-container #sign-in-container {
   width: 100%;
   border-radius: 2rem;
   text-align: center;
+  color:#2a2c66;
+  outline-style: none;
+  font-size: 1.3rem;
 }
 
 #container input[type="text"] {
   box-sizing: border-box;
   border: 2px solid #86b026;
 }
-/* .no-outline:focus {
-    outline: none;
-} */
 
 #container input[type="email"] {
   box-sizing: border-box;
@@ -982,13 +985,192 @@ form #sign-up-container #sign-in-container {
   margin: 0 auto;
 }
 
+#table-scorePage {
+  margin: 2rem auto;
+  font-family: "Ruda", sans-serif;
+  width: 20rem;
+}
+
+#thead-scorePage {
+  background-color: #45467a;
+  padding: 1rem;
+  color: #d8d8ea;
+  font-family: "Ruda", sans-serif;
+  font-size: 1.4rem;
+}
+#topTable-scorePage {
+  font-size: 1.2rem;
+}
+
+#topFive-scorePage {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+}
+.tr-topTable-scorePage {
+  background-color: #d8d8ea;
+  color: #86b026;
+  text-align: center;
+}
+.topTable-scorePage {
+  border: 0.2rem solid #d8d8ea;
+  padding: 0.3rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.tr-oddRow-scorePage {
+  border: none;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  background-color: #45467a;
+  color: #d8d8ea;
+}
+.oddRow-scorePage {
+  padding: 0.3rem;
+}
+.tr-evenRow-scorePage {
+  border: none;
+  padding: 0.7rem;
+  font-size: 1.1rem;
+  background-color: #d8d8ea;
+  color: #45467a;
+  padding: 1rem;
+}
+.evenRow-scorePage {
+  padding: 0.2rem;
+}
+
+
+  /* FORMULAIRE AJOUT QUESTION */
+
+  #choix_thematique, #nombre_reponse, #nouvelle_question > legend {
+    text-align: center;
+    margin: 30px; 
+}
+
+.questionCreation {
+    border: 4.65455px solid #D8D8EA;
+    box-sizing: border-box;
+    border-radius: 60.5091px;
+    font-size: 20px;
+    font-family: 'Russo One';
+    text-align: center;
+    outline: none;
+}
+#nomQuiz {
+  border: 4.65455px solid #D8D8EA;
+  box-sizing: border-box;
+  border-radius: 60.5091px;
+  font-size: 20px;
+  font-family: 'Russo One';
+  text-align: center;
+  outline: none;
+}
+
+#rep_correcte {
+    border: 4.65455px solid #A7D72E;
+    box-sizing: border-box;
+    border-radius: 60.5091px;
+    margin: 10px;
+    width: 360px;
+    height: 30px;
+    font-size: 15px;
+    font-family: 'Russo One';
+    text-align: center;
+    outline: none;
+    
+}
+
+.rep_incorrecte {
+    border: 4.65455px solid rgba(255, 195, 52, 1);
+    box-sizing: border-box;
+    border-radius: 60.5091px;
+    width: 705px;
+    margin-top: 10px;
+    height: 30px;
+    font-family: 'Russo One';
+    text-align: center;
+    outline: none;
+    font-size: 15px;
+}
+
+#menu_thematique {
+    border: 4.65455px solid #D8D8EA;
+    box-sizing: border-box;
+    border-radius: 60.5091px;
+}
+
+#menu_thematique, #button_text, #nouvelle_question, #questionCreation {
+    font-family: 'Russo One';
+    text-align: center;
+}
+
+#button_text {
+    color: #45467A;
+}
+
+#nouvelle_question {
+    margin-left: 50px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+#question_reponses > .questionCreation {
+    width: 730px;
+}
+
+body {
+    background-image: conic-gradient(
+    from 65deg at -5% 30%,
+    rgba(121, 122, 181, 0.9) 10deg,
+    rgba(107, 108, 174, 1) 0deg,
+    #6667ab 0deg,
+    rgba(255, 255, 255, 0) 270deg,
+    rgba(121, 122, 181, 0.9) 0deg
+  );
+
+    background-repeat: no-repeat;
+    /* height: 390vh; */
+}
+
+#ajout_quiz_2 {
+    margin-top: 25px;
+    margin-left: 50px;
+}
+
+#nouvelle_question > p {
+    color: #45467A;
+    font-family: 'Russo One';
+}
+
+.big_checkbox {
+    height: 20px;
+    width: 20px;
+}
+
+
+input[type=button]{
+  background-color: #A7D72E;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20%;
+}
+
+
+
+
+
+
 @media screen and (min-width: 768px) {
 
   body {
     overflow-x: hidden;
-    overflow-y: hidden;
-    /* min-height: auto; */
-    height: 101vh;
+    /* overflow-y: hidden; */
+
   }
 
   #logo img {
@@ -1070,18 +1252,14 @@ form #sign-up-container #sign-in-container {
   }
 
   .sousmenu-nav_link:hover {
-  color: #d8d8ea;
+    color: #d8d8ea;
     background-color: #45467a;
     border-radius: 1rem;
     border:0.3rem solid #565791;
   }
 
-  /* #dropdown:focus {
-        background-color: #45467a;
-        color: #d8d8ea;
-      } */
-
-  .titre h1 {
+  
+  .bienvenue {
     font-size: 4rem;
     letter-spacing: 0.3rem;
     padding: 1.3rem 0;
@@ -1186,8 +1364,8 @@ form #sign-up-container #sign-in-container {
     z-index: 30000;
     background-color: #45467a;
     opacity: 90%;
-    height: 500px;
-    padding-top: 50px;
+    /* height: 500px;
+    padding-top: 50px; */
   }
 
   .timer-QuizQuest {
@@ -1248,7 +1426,6 @@ form #sign-up-container #sign-in-container {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(2, 1fr);
     margin-top: 2rem;
-    /* gap: 2rem; */
   }
 
   .grid-itemQq {

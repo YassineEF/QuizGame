@@ -19,6 +19,8 @@
     <script src="./Js/jquery-3.6.0.js" defer></script>
     <script src="./Js/script.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js" defer></script>
+     <!-- ANIMATION TITRE -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js" ></script>
 </head>
 <body>
     <!-- HEADER -->
@@ -34,17 +36,6 @@
         <!-- MENU  NAV -->
         <div class="nav">
             <ul class="menu-nav">
-             <!--  <li class="menu-nav_item">
-                <a href="#" class="menu-nav_link" id="dropdown"> QUIZ </a>
-                <ul class="sousmenu-nav hidden">
-                </ul>
-              </li>
-              <li class="menu-nav_item">
-                <a href="#" id="inscrire" class="menu-nav_link"> S'INSCRIRE </a>
-              </li>
-              <li class="menu-nav_item">
-                <a href="#" id="connect" class="menu-nav_link"> SE CONNECTER </a>
-              </li> -->
             </ul>
           </div>
     </header>
@@ -55,9 +46,9 @@
     <main>
         <!-- TEXT ACCEUIL -->
         <div class="titre">
-            <h1>Bienvenue sur QuiZi!</h1>
+            <h1 class="bienvenue">Bienvenue sur QuiZi !</h1>
             <h3>Tu veux t'amuser? Créer des quiz? Défier des amis?</h3>
-            <h5>Explore les catégories, choisis ton quiz. Si tu veux conserver tes scores et les comparer à ceux des autres joueurs, défier tes amis <a href="#" id="inscriptionAcc">inscris-toi!</a></h5>
+            <h5>Explore les catégories, choisis ton quiz.<br> Si tu veux conserver tes scores et les comparer à ceux des autres joueurs, <a href="#" id="inscriptionAcc">inscris-toi!</a></h5>
         </div>
         <!-- CATEGORIE IMG  -->
         <div class="categories"></div>
@@ -103,9 +94,24 @@
                 <div id="bravoDomm-QuizQuest"></div>
             </article>
             <div id="score">
-                
+               
             </div>
-
+                 <table id="table-scorePage">
+                    <thead id="thead-scorePage">
+                      <tr>
+                        <th id="topFive-scorePage" colspan="3">
+                          Top 5 des meilleurs scores
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-scoreP">
+                      <tr class="tr-topTable-scorePage">
+                        <td class="topTable-scorePage"><h4>Pseudo</h4></td>
+                        <td class="topTable-scorePage"><h4>Score / 10</h4></td>
+                        <td class="topTable-scorePage"><h4>Temps</h4></td>
+                      </tr>
+                    </tbody>
+                  </table>
             <div class="container" id="container">
 
 
@@ -139,14 +145,11 @@
 
 
 
-            <div id="pagePerso">
-            <div id="titrePagePerso">
-                
-            </div>
+        <div id="pagePerso">
+            <div id="titrePagePerso"> </div>
               <div id="buttonsCreerModifier">
                 <div><a href="#" id="buttonCreeQuiz-pagePerso"> JE CRÉE UN QUIZ</a></div>
-                <div><a href="#" id="buttonModifieQuiz-pagePerso"> JE MODIFIE UN QUIZ</a>
-                </div>
+                <div><a href="#" id="buttonModifieQuiz-pagePerso"> JE MODIFIE UN QUIZ</a></div>
               </div>
               <table id="table-pagePerso">
                 <thead id="thead-pagePerso">
@@ -156,63 +159,63 @@
                     </th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="table-profile">
                   <tr class="tr-topTable-pagePerso">
                     <td class="topTable-pagePerso"><h4>Date</h4></td>
                     <td class="topTable-pagePerso"><h4>Nom du Quiz</h4></td>
                     <td class="topTable-pagePerso"><h4>Score / 10</h4></td>
-                    <td class="topTable-pagePerso"><h4>Temps</h4></td>
-                  </tr>
-                  <tr class="tr-oddRow-pagePerso">
-                    <th class="oddRow-pagePerso">12/12/21</th>
-                    <th class="oddRow-pagePerso">quiz arts 1</th>
-                    <th class="oddRow-pagePerso">9</th>
-                    <th class="oddRow-pagePerso">02:57</th>
-                  </tr>
-                  <tr class="tr-evenRow-pagePerso">
-                    <th class="evenRow-pagePerso">12/12/21</th>
-                    <th class="evenRow-pagePerso">quiz sciences</th>
-                    <th>9</th>
-                    <th>02:55</th>
-                  </tr>
-                  <tr class="tr-oddRow-pagePerso">
-                    <th class="oddRow-pagePerso">22/02/22</th>
-                    <th class="oddRow-pagePerso">quiz sport 1</th>
-                    <th>8</th>
-                    <th>03:00</th>
-                  </tr>
-                  <tr class="tr-evenRow-pagePerso">
-                    <th class="evenRow-pagePerso">15/02/22</th>
-                    <th class="evenRow-pagePerso">quiz geo 1</th>
-                    <th>9</th>
-                    <th>03:00</th>
-                  </tr>
-                  <tr class="tr-oddRow-pagePerso">
-                    <th class="oddRow-pagePerso">03/03/22</th>
-                    <th class="oddRow-pagePerso">quiz art 2</th>
-        
-                    <th>7</th>
-                    <th>02:40</th>
-                  </tr>
-                  <tr class="tr-evenRow-pagePerso">
-                    <th class="evenRow-pagePerso">31/12/21</th>
-                    <th class="evenRow-pagePerso">quiz sport 2</th>
-                    <th>9</th>
-                    <th>02:55</th>
-                  </tr>
-                  <tr class="tr-oddRow-pagePerso">
-                    <th class="oddRow-pagePerso">13/02/22</th>
-                    <th class="oddRow-pagePerso">quiz histoire</th>
-                    <th>8</th>
-                    <th>03:00</th>
+                    <td class="topTable-pagePerso"><h4>Temps </h4></td>
                   </tr>
                 </tbody>
               </table>
               <div class="buttonBottom-pagePerso">
-                <div><a class="buttonChoisis-pagePerso" href="#"
-                    >JE CHOISIS UNE THÉMATIQUE & JE JOUE</a></div>
+                <div><a class="buttonChoisis-pagePerso" href="#">JE CHOISIS UNE THÉMATIQUE & JE JOUE</a></div>
               </div>
-            </div>
+        </div>
+
+
+
+
+        <div id="creationQuiz">
+
+        <div id="choix_thematique">
+          <legend><label for="choix_thematique">CHOISIS UNE THEMATIQUE</label></legend><br>
+              <select name="menu_thematique" id="menu_thematique">
+              </select>
+        </div>
+
+        <div id="nombre_reponse"> <!-- Choix du nombre de réponses --> 
+
+          <legend>Choisis le nom du Quiz</legend><br>
+   
+          <div id="button_text">
+            <!-- <input type="radio" name="2_rep" value="2_rep" id="2_rep" /> <label for="2_rep">2 (VRAI - FAUX)</label> -->
+            <!-- <input type="radio" name="4_rep" value="4_rep" id="4_rep" /> <label for="4_rep">4 REPONSES</label> -->
+            <input type="text" name="question" id="nomQuiz" value="" placeholder="Nom du Quiz" />
+          </div>
+
+        </div>
+
+        <div id="nouvelle_question"> <!-- Saisie Questions + Réponses -->
+
+          <legend>Tes questions et réponses</legend><br>
+    
+          <!--------------------------------------------- QUESTION + REPONSES + CHECKBOX ----------------------->
+          <div id="question_reponses"></div>
+
+
+         
+          <input type="button" id="sendQuiz" value="Envoyer Quiz">
+        </div>
+</div>
+        <!-- BOUTON AJOUT QUIZ -->
+
+        <!-- <div id="ajout_quiz_2">
+          <input class="button_ajout" type="button" value="+">
+          <div id="ajout">Ajouter un quiz</div>
+        </div> -->
+
+      </div>
     </main>
 
 

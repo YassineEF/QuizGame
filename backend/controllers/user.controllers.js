@@ -51,14 +51,14 @@ module.exports.ConnectionUser =  function  (req, res) {
           res.json({ msg: "error" });
         } else {
            function score(idUser){
-            let scoreUser =  db.query('SELECT id, score, timer, DATE_FORMAT( date, "%d-%m-%Y") , id_admin, id_quiz FROM score WHERE id_admin = ?',[idUser], function (err, scores){
+            let scoreUser =  db.query('SELECT s.id, s.score, s.timer, DATE_FORMAT( date, "%d-%m-%Y") AS date , s.id_admin, s.id_quiz, q.name FROM score s JOIN quiz q ON s.id_quiz = q.id  WHERE s.id_admin = ?',[idUser], function (err, scores){
               if (err) {
                 res.json({ msg: "error" });
                 console.log(err);
               } else {
                 let accessToken = jwt.sign( {rows}, process.env.JWT_SECRET);
                 res.cookie('token', accessToken  )
-                // res.json({ msg: "success, user found and logged", user: rows, token:accessToken});
+                
                 res.json({ msg: "success",  user: rows, token:accessToken,  scores });
               }
             })
@@ -76,92 +76,104 @@ module.exports.ConnectionUser =  function  (req, res) {
 
 
 
+module.exports.ScoreUser = async function  (req, res) {
+  let idUser = req.body.idUser;
+  let idQuiz = req.body.quizId
+  let timer = req.body.temps
 
-
-// let accessToken = jwt.sign( {rows}, process.env.JWT_SECRET);
-//           // res.cookie('token', accessToken, { httpOnly: true, secure: true, SameSite: 'strict' , expires: new Date(Number(new Date()) + 30*60*1000) });
-//           res.cookie('token', accessToken  )
-//           res.json({ msg: "success, user found and logged", user: rows, token:accessToken});
-
-
-
-
-
-
-
-
-// module.exports.CheckToken = verifyToken, function (req, res) {
- 
-//   res.send(req.user)
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// function authenticateToken(req,res,next) {
+  let score = req.body.score
   
-//   // const authHeader = req.headers.authorization
-//   const token = req.headers                                                  //'Bearer 1oL0mKpN45FTR16gIu99Dz on fait comme ça pour recuperer l'index 1 notre cle 
-//   // const token = req.headers['authorization']
-//   console.log(token);
-//   if (!token) {
-//     return res.sendStatus(401)
-//   }
+  console.log(score);
   
-//   jwt.verify(token, process.env.JWT_SECRET, (err, user) =>{
-//     if(err) {
-//       console.log("lolollo");
-//       return res.sendStatus(401)
-//     }
-//       req.user = user;
-//       next()
-//   })
-// }
+  db.query("INSERT INTO score (score, timer, date, id_admin, id_quiz) VALUES (?,?, now(), ?, ?)", [score, timer, idUser, idQuiz] ,function(err,result){
+      if(err){
+        res.json({ msg: err })
+        console.log(err);
+      }else{
+        res.json({ msg: "success, inserted score", result });
+      }                                           
+  })
+};
 
-// module.exports.CheckToken = authenticateToken, function (req, res) {
+module.exports.ScoreScreen = async function  (req, res) {
+  let idQuiz = req.body.quizId
+
+  db.query("SELECT  s.score, s.timer, s.id_admin , s.id_quiz, a.username  FROM score s JOIN admin a ON s.id_admin = a.id WHERE s.id_quiz = (?) ORDER BY s.score DESC LIMIT 5", [idQuiz] ,function(err,result){
+      if(err){
+        res.json({ msg: err })
+        console.log(err);
+      }else{
+        res.json({ msg: "score recovered successfully", result });
+      }
+  })
+};
+
+
+
+module.exports.creationQuiz = function(req, res, next){
+  let nameQuiz = req.body.NameQuiz
+  let idAdmin = req.body.idUser
+  let idThema = req.body.idCate
+  let questionReps = req.body.questReps
+
+  db.query("INSERT INTO quiz (name, id_admin, id_thématique) VALUES (?, ?, ?) ", [nameQuiz,idAdmin, idThema], function(err,result){
+    if(err){
+      
+      console.log(err);
+    }else{
+      let idQuiz = result.insertId;   
+      for(let i = 0; i < questionReps.length; i++){
+        db.query("INSERT INTO questions (question, id_quiz) VALUES(?,?) ", [questionReps[i][0], idQuiz], function(error, questions){
+          if(error){
+            console.log(error );
+          }else{
+            let idQuestion = questions.insertId
+            for(let j = 0; j < questionReps[i][1].length ; j++){
+              if(questionReps[i][1][j] === questionReps[i][1][0]){
+                   db.query("INSERT INTO reponses (reponse, boolean ,id_question) VALUES(?, 1 ,?) ", [questionReps[i][1][j], idQuestion], function(errors, firstResponses){
+                     if(errors){
+                       console.log(errors);
+                     }
+                   })
+                  }else{
+                 db.query("INSERT INTO reponses (reponse, boolean ,id_question) VALUES(?, 0 ,?) ", [questionReps[i][1][j], idQuestion], function(errore, responses ){
+                   if(errore){
+                     // res.json({msg : errore})
+                     console.log(errore );
+                   }else{
+                    //  res.json({ msg: "Quiz inserted successfully" ,responses});
+                    // console.log(responses);
+                    // console.log(questions);
+                    res.status(200)
+                   }
  
-//   res.send(req.user)
-// }
+                 })
+               }
+            }
+          }
+        })
+      } 
+    }
+  })
 
-// // module.exports.CheckToken = (req, res, next) => {
-// //   const token = req.cookies.jwt;
-// //   if (token) {
-// //     jwt.verify(token, process.env.JWT_SECRET, async (err, decodedToken) => {
-// //       if (err) {
-// //         res.locals.user = null;
-// //         res.cookie("jwt", "", { maxAge: 1 });
-// //         next();
-// //       } else {
-// //         let user = await userModel.findOne({
-// //           where: { id_user: decodedToken.id_user },
-// //         });
-// //         console.log("hello");
-// //         res.locals.user = user.id_user;
-// //         console.log(user);
-// //         next();
-// //       }
-// //     });
-// //   } else {
-// //     res.locals.user = null;
-// //     next();
-// //   }
-// // };
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

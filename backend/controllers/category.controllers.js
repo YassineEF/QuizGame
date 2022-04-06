@@ -58,7 +58,7 @@ module.exports.displayQuestions = function (req, res) {
             res.json({ msg: "error" });
             console.log(msg);
           } else {
-            res.json({ msg: "success",  quests,  reps });
+             res.json({ msg: "success",  quests,  reps });
           }
 
         }

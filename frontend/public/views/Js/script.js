@@ -6,6 +6,12 @@ function HeaderPrincipale(){
         $(".menu-nav").html(` <li class="menu-nav_item">
         <a href="#" class="menu-nav_link" id="dropdown"> QUIZ </a>
         <ul class="sousmenu-nav hidden">
+        <li class="liSousmenu-nav" id="1"><a href="#" class="sousmenu-nav_link">Culture Générale</a></li>
+        <li class="liSousmenu-nav" id="2"><a href="#" class="sousmenu-nav_link">Arts</a></li>
+        <li class="liSousmenu-nav" id="3"><a href="#" class="sousmenu-nav_link">Sciences</a></li>
+        <li class="liSousmenu-nav" id="4"><a href="#" class="sousmenu-nav_link">Sports</a></li>
+        <li class="liSousmenu-nav" id="5"><a href="#" class="sousmenu-nav_link">Géographie</a></li>
+        <li class="liSousmenu-nav" id="6"><a href="#" class="sousmenu-nav_link">Histoire</a></li>
         </ul>
       </li>
         <li class="menu-nav_item">
@@ -19,6 +25,12 @@ function HeaderPrincipale(){
          $(".menu-nav").html(` <li class="menu-nav_item">
          <a href="#" class="menu-nav_link" id="dropdown"> QUIZ </a>
          <ul class="sousmenu-nav hidden">
+            <li class="liSousmenu-nav" id="1"><a href="#" class="sousmenu-nav_link">Culture Générale</a></li>
+            <li class="liSousmenu-nav" id="2"><a href="#" class="sousmenu-nav_link">Arts</a></li>
+            <li class="liSousmenu-nav" id="3"><a href="#" class="sousmenu-nav_link">Sciences</a></li>
+            <li class="liSousmenu-nav" id="4"><a href="#" class="sousmenu-nav_link">Sports</a></li>
+            <li class="liSousmenu-nav" id="5"><a href="#" class="sousmenu-nav_link">Géographie</a></li>
+            <li class="liSousmenu-nav" id="6"><a href="#" class="sousmenu-nav_link">Histoire</a></li>
          </ul>
        </li>
         <li class="menu-nav_item">
@@ -53,14 +65,19 @@ function showAcceuil(len,resp) {
     $("#container").hide();
     $(".questRep-QuizQuest").hide()
     $("#pagePerso").hide()
+    $("#table-scorePage").hide()
+    $("#creationQuiz").hide()
+    $("#creationQuiz").hide()
     // $(".questRep-QuizQuest").show()
     //Montrer les categories
     for (let i = 0; i < len; i++) {
       $(".categories").append(`<div class="categorie_image" id="${resp.thema[i].id}"><img src="./images/${resp.thema[i].id}.jpg" alt="img Categories">
               <p class="centered">${resp.thema[i].thématique}</p></div>`);
-        $(".sousmenu-nav ").append(`<li class="liSousmenu-nav" id="${resp.thema[i].id}"><a href="#" class="sousmenu-nav_link">${resp.thema[i].thématique} </a></li>`)
     }
+
 }
+
+// 
 
 //Cacher la page Acceuil et show le overlay
 function hideAcceuil() {
@@ -70,11 +87,12 @@ function hideAcceuil() {
   $("#overlay_inscription").html(
     ` <h2 id="overlay_text">Pour conserver tes scores et comparer avec les autres joueurs, inscris-toi !</h2>`
   );
-
+  $("#table-scorePage").hide()
   //Montrer qu'il peux s'inscrire pendant 4s
   setTimeout(function () {
     $("#overlay_text").hide();
   }, 4000); //4000
+  $("#creationQuiz").hide()
 }
 
 
@@ -87,6 +105,8 @@ function showQuestions() {
   $("#overlay-QuizQuest").show();
   $("#overlay-QuizQuest").html(`<p id="overlay-start">START</p>`);
   $("#topQuizQuest").show();
+  $("#table-scorePage").hide()
+  $("#creationQuiz").hide()
 }
 
 // Creér le numero de question dans le quiz
@@ -107,31 +127,8 @@ function creationQuestionNumber(len){
 
 
 
-// Function show tableau de score
-function scoreTable(scores, temp,numeroQuest) {
-// function scoreTable(scores, mins,secs,numeroQuest) {
-    $("header").show()
-    $("#topQuizQuest").hide();
-    $(".questRep-QuizQuest").hide();
-    $("#score").empty()
-    $("#score").append(`<h1 id="h1-scorePage">DÉCOUVRE TES SCORES <br /> & <br />CEUX DES AUTRES JOUEURS</h1>`);
-    if(scores <= 3){
-        $("#score").append(`<h2 id="h2-scorePage"> T'es nul, apprends à lire et à écrire !</h2>`);
-    }else if(scores <= 6){
-        $("#score").append(`<h2 id="h2-scorePage"> Tu commence à apprendre, maintenant t'as le niveau d'un singe</h2>`);
-    } else if(scores <= 8){
-        $("#score").append(`<h2 id="h2-scorePage">Vous aussi suivez Grafikart?</h2>`);
-    } else{
-        // $("main").append(`<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) !</h2>`);
-        $("#score").append(`<h2 id="h2-scorePage">BRAVO ! Tu es tres proche du niveau de Yassine !</h2>`);
-    }        
-    $("#score").append(` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${180 - temp}</span> sec </h3></div>`);
-    // $("#score").append(` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${mins}  </span>min<span id="tempsQuiz-scorePage"> ${secs}</span> sec </h3></div>`);
-    $("#score").append(`<div class="buttons-scorePage">
-    <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);  
-    // $("#score").append(`<div class="buttons-scorePage"><a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
-    // <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);  
-}
+ 
+
 let time= 0
 function timer(scores, mins, secs, numeroQuest) {
   const departMinutes = 3;
@@ -145,8 +142,6 @@ function timer(scores, mins, secs, numeroQuest) {
     minutes = parseInt(temps / 60, 10);
     secondes = parseInt(temps % 60, 10);
 
-    localStorage.setItem("min", minutes);
-    localStorage.setItem("sec", secondes);
     minutes = minutes < 10 ? "0" + minutes : minutes;
     secondes = secondes < 10 ? "0" + secondes : secondes;
 
@@ -159,8 +154,7 @@ function timer(scores, mins, secs, numeroQuest) {
       let score = 0;
       score = localStorage.getItem("score");
       let numeroQuest = localStorage.getItem("numeroQuest");
-      console.log(counterQuest);
-      console.log(numeroQuest);
+
       scoreTable(score, temps, numeroQuest);
       // scoreTable(score,minutes,secondes,numeroQuest)
       $("#bravoDomm-QuizQuest").empty();
@@ -173,11 +167,12 @@ function timer(scores, mins, secs, numeroQuest) {
 
 
 // Function show tableau de score
-function scoreTable(scores, temp, numeroQuest) {
+function scoreTable(response, scores, temp, numeroQuest) {
   // function scoreTable(scores, mins,secs,numeroQuest) {
   $("header").show();
   $("#topQuizQuest").hide();
   $(".questRep-QuizQuest").hide();
+  $("#creationQuiz").hide()
   $("#score").empty();
   $("#score").append(
     `<h1 id="h1-scorePage">DÉCOUVRE TES SCORES <br /> & <br />CEUX DES AUTRES JOUEURS</h1>`
@@ -188,27 +183,31 @@ function scoreTable(scores, temp, numeroQuest) {
     );
   } else if (scores <= 6) {
     $("#score").append(
-      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score! </h2>`
+      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score ! </h2>`
     );
   } else if (scores <= 8) {
     $("#score").append(`<h2 id="h2-scorePage">Félicitations !!! </h2>`);
   } else {
-    // $("main").append(`<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) !</h2>`);
     $("#score").append(
       `<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) ! </h2>`
     );
   }
   $("#score").append(
-    ` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${
-      180 - temp
-    }</span> sec </h3></div>`
+    ` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${180 - temp}</span> sec </h3></div>`
   );
-  // $("#score").append(` <div id="scoresJoueur-scorePage"><h3 id="rpJustes-scorePage">Tu as obtenu <span id="scoreSurDix-scorePage"> ${scores} </span> / ${numeroQuest} en <span id="tempsQuiz-scorePage"> ${mins}  </span>min<span id="tempsQuiz-scorePage"> ${secs}</span> sec </h3></div>`);
+ 
   $("#score").append(`<div class="buttons-scorePage">
-    <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
-  // $("#score").append(`<div class="buttons-scorePage"><a id="buttonRejoue-scorePage" href="#">REJOUE</a><br />
-  // <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br /><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
-}
+    <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br/><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
+    $("#table-scorePage").show()
+    for(let i = 0; i < response.result.length; i++){
+        $("#table-scoreP").append(`<tr class="tr-oddRow-scorePage">
+            <th class="oddRow-scorePage">${response.result[i].username}</th>
+            <th class="oddRow-scorePage">${response.result[i].score}</th>
+            <th class="oddRow-scorePage">${response.result[i].timer}</th>
+        </tr>`)
+        }
+} 
+  
 
 function ShowInscription() {
     $("#container").show();
@@ -223,6 +222,7 @@ function ShowInscription() {
     $("#h2-scorePage").hide()
     $("#scoresJoueur-scorePage").hide()
     $(".buttons-scorePage").hide()
+    $("#creationQuiz").hide()
 }
 
 function ShowConnection() {
@@ -238,11 +238,82 @@ function ShowConnection() {
     $("#h2-scorePage").hide()
     $("#scoresJoueur-scorePage").hide()
     $(".buttons-scorePage").hide()
+    $("#creationQuiz").hide()
 }
 
 function PagePerso(response){
     $("#titrePagePerso").append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${response.user[0].username}</span> ! </h1>
     <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`)
+    if(response.scores.length === 0){
+        alert("Premiere connection, commence à jouer pour voir tes scores")
+    }else{
+        for (let i = 0; i < response.scores.length; i++) {   
+            $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
+            <th class="oddRow-pagePerso">${response.scores[i].date}</th>
+            <th class="oddRow-pagePerso">${response.scores[i].name}</th>
+            <th class="oddRow-pagePerso">${response.scores[i].score}</th>
+            <th class="oddRow-pagePerso">${response.scores[i].timer}secs</th>
+            </tr>`) 
+        }
+    }
+}
+
+function ShowProfile() {
+    $("#container").hide();
+    $("#sign-in-container").hide();
+    $("#sign-up-container").hide();
+    $(".categories").hide();
+    $(".titre").hide();
+    $(".questRep-QuizQuest").hide()
+    $("#titre_thematique").hide()
+    $("#grid_thematique").hide()
+    $("#h1-scorePage").hide()
+    $("#h2-scorePage").hide()
+    $("#scoresJoueur-scorePage").hide()
+    $(".buttons-scorePage").hide()
+    $("#table-scorePage").hide()
+    $("#pagePerso").show()
+    $("#creationQuiz").hide()
+}
+
+function ShowCreationQuiz(response, len){
+    $("#container").hide();
+    $("#sign-in-container").hide();
+    $("#sign-up-container").hide();
+    $(".categories").hide();
+    $(".titre").hide();
+    $(".questRep-QuizQuest").hide()
+    $("#titre_thematique").hide()
+    $("#grid_thematique").hide()
+    $("#h1-scorePage").hide()
+    $("#h2-scorePage").hide()
+    $("#scoresJoueur-scorePage").hide()
+    $(".buttons-scorePage").hide()
+    $("#table-scorePage").hide()
+    $("#pagePerso").hide()
+    $("#creationQuiz").show()
+    $("#question_reponses").empty()
+    for (let i = 0; i < 10; i++) {
+        $("#question_reponses").append(`<input type="text" name="question" class="questionCreation" id="${i}" value="" placeholder="Question ${i + 1}" /><br>
+        
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte" id="${i}" data-true="1" placeholder="Ecrire içi la reponse correcte" />
+        <br>
+        
+        
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte"  id="${i}" data-true="0" placeholder="A renseigner" />
+        <br>
+        
+        
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte" id="${i}" data-true="0" placeholder="A renseigner" />
+        <br>
+        
+        
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte"  id="${i}" data-true="0" placeholder="A renseigner" />
+        <br><br><br>`)
+    }for (let z = 0; z < len; z++) {
+        $("#menu_thematique").append(`<option value="${response.thema[z].id}">${response.thema[z].thématique}</option>`)
+        
+    }
 }
 
 // Page acceuil et Category
@@ -256,7 +327,7 @@ $(document).ready(function () {
         success: function (res) {
             let length = res.thema.length;
             showAcceuil(length,res)
-
+            $("#pagePerso").hide()
         },
     });
 });
@@ -274,12 +345,15 @@ $("#logo").on("click", function (e) {
     $(".buttons-scorePage").hide()
     $("#container").hide();
     $("#sign-up-container").hide();
+    $("#pagePerso").hide()
+    $("#creationQuiz").hide()
 })
 
 
-$(document).on("click", ".buttonChoisis-scorePage", function(e){
+$(document).on("click", ".buttonChoisis-scorePage, .buttonChoisis-pagePerso", function(e){
     e.preventDefault()
     HeaderPrincipale()
+    $("#background_img").show()
     $(".categories").show();
     $(".titre").show();
     $("#h1-scorePage").hide()
@@ -287,19 +361,23 @@ $(document).on("click", ".buttonChoisis-scorePage", function(e){
     $("#scoresJoueur-scorePage").hide()
     $(".buttons-scorePage").hide()
     $(".questRep-QuizQuest").hide();
-        localStorage.clear();
+    $("#pagePerso").hide()
+    $("#creationQuiz").hide()
+    localStorage.clear();
+    let counterQuest = 0;
 })
 // Page quiz par thématiques
 $(document).ready(function () {
   $(document).on("click", ".categorie_image, .liSousmenu-nav", function (e) {
     e.preventDefault();
     HeaderPrincipale()
+    $("#background_img").show()
     $("#container").hide();
     $("#sign-up-container").hide();
     $("#sign-in-container").hide();
+    $("#pagePerso").hide()
+    $("#creationQuiz").hide()
     let idCategory = $(this).attr("id");
-    // localStorage.setItem("idCat", idCat)
-    // let idCategory = localStorage.getItem("idCat")
     $.ajax({
       url: "http://127.0.0.1:3000/CategoryQuiz:CategoryID",
       type: "GET",
@@ -310,6 +388,7 @@ $(document).ready(function () {
         let length = res.quiz.length;
         //chacher le catgeory et thématiques et show le overlay
         hideAcceuil();
+        $("#background_img").show()
         //montrer la photode la category
         $("#titre_thematique").html(
           ` <div id="background_img"> <img src="./images/${res.cat.id}.jpg" alt="img Categories"> <p class="centered">${res.cat.thématique}</p></div>`
@@ -323,6 +402,7 @@ $(document).ready(function () {
                              <img src="./images/symbole.png" alt= ? />
                         </div>`);
         }
+        let counterQuest = 0;
       },
     });
   });
@@ -332,6 +412,7 @@ $(document).ready(function () {
 $(document).on("click", ".buttonChoisisQ-scorePage", function(e){
     e.preventDefault()
     HeaderPrincipale()
+    $("#pagePerso").hide()
     $("#background_img").show();
     $("#grid_thematique").show();
         $("#h1-scorePage").empty()
@@ -340,15 +421,17 @@ $(document).on("click", ".buttonChoisisQ-scorePage", function(e){
         $(".buttons-scorePage").hide()
         $(".questRep-QuizQuest").hide();
         localStorage.clear();
+        let counterQuest = 0;
 })
 
 
 
 //Lancement du jeu
 $(document).ready(function () {
-  $(document).on("click", ".quiz_div, #buttonRejoue-scorePage", function (e) {
+  $(document).on("click", ".quiz_div", function (e) {
     e.preventDefault();
     HeaderPrincipale()
+    $("#pagePerso").hide()
     let quizzID = $(this).attr("id");
     async function quizGame(quizID){
 
@@ -359,7 +442,7 @@ $(document).ready(function () {
         dataType: "json",
         data: { idQuiz: quizID },
         success: function (res) {
-            localStorage.clear();
+            
             showQuestions();
             // put questions and answers in variables
             let { quests, reps } = res;
@@ -379,7 +462,9 @@ $(document).ready(function () {
                 }
             }
             //variable to count the questions
-            let counterQuest = 0;
+            let counterQuest = null
+            counterQuest = 0;
+            // let counterQuest = 0;
             
             // Counter Questions
             let numeroQuestion = results.length;
@@ -415,6 +500,7 @@ $(document).ready(function () {
             }
             StartGame()
             //variable to count the points
+            
             let points = 0;
             $(document).on("click", ".grid-itemQq", function () {
                 let valeurRep = $(this).attr("id");
@@ -423,10 +509,15 @@ $(document).ready(function () {
                     $("#bravoDomm-QuizQuest").html(`<p class="bravo-QuizQuest">BRAVO !</p>`);
                     $(".grid-itemQq").css("pointer-events", "none");
                     points += 1;   
+                   
+                    let li = document.querySelectorAll(".li-numeroQuest-QuizQuest");
+                    li[counterQuest - 1].style.background = "green";
                 } 
                 else {
                     $("#bravoDomm-QuizQuest").html(`<p class="dommage-QuizQuest">DOMMAGE !</p>`);
-                    $(".grid-itemQq").css("pointer-events", "none");     
+                    $(".grid-itemQq").css("pointer-events", "none");   
+                    let li = document.querySelectorAll(".li-numeroQuest-QuizQuest");
+                    li[counterQuest - 1].style.background = "orange";
                 }
                 localStorage.setItem("score", points);
                 setTimeout(() => {
@@ -439,32 +530,66 @@ $(document).ready(function () {
                         }
                         counterQuest++;
                     }
-                }, 2000);
+                }, 1000); //2000
                 // Get the item in the local storage
                 let score = localStorage.getItem("score");
-                let min = localStorage.getItem("min")
-                let sec = localStorage.getItem("sec")
                 let temps = localStorage.getItem("temps")
+                let timer = 180 - temps
                 if (counterQuest === numeroQuestion) {
-                    setTimeout(() => {
-                        clearInterval(time)
-                        scoreTable(score,temps,numeroQuestion)
-                        // scoreTable(score,min,sec,numeroQuestion)
-                        $("#bravoDomm-QuizQuest").empty()
-                        counterQuest = 0
-                    }, 2000);
+                    let user = Cookies.get('token')
+                    if(user){
+                        let idUser = sessionStorage.getItem('idUser');
+                        console.log(score);
+                        $.ajax({
+                            url: "http://127.0.0.1:3000/InsertScore",
+                            type: "POST",
+                            data: JSON.stringify({
+                                "score": score, 
+                                "quizId": quizzID, 
+                                "temps": timer,
+                                "idUser" :  idUser
+                            }),
+                            contentType: 'application/json',
+                            processData: false,
+                            dataType: "json",
+                            success: function (res) {
+
+                            },
+                            error: function(datas) {
+                                console.log(datas);
+                            } 
+                          
+                        })
+                    }
+                    $.ajax({
+                        url: "http://127.0.0.1:3000/ScoreScreen",
+                        type: "POST",
+                        data: JSON.stringify({
+                            "quizId": quizzID
+                        }),
+                        contentType: 'application/json',
+                        processData: false,
+                        dataType: "json",
+                        success: function (res) {
+                            setTimeout(() => {
+                            clearInterval(time)
+                            scoreTable(res,score,temps,numeroQuestion)
+                            $("#bravoDomm-QuizQuest").empty()
+                            $(document).off("click", ".grid-itemQq");
+                            counterQuest = 0
+                            points = 0
+                            localStorage.clear();
+                        }, 2000);
+                        },
+                        error: function(datas) {
+                            alert(datas.responseText);
+                        } 
+                      
+                    })
+                    
                     
                 }
             });
-            // let min = localStorage.getItem("min")
-            // let sec = localStorage.getItem("sec")
-            
-            // if(times == "0"){
-            //     console.log("Hello");
-            // }
-            // if(times == 0){
-            //     console.log("Hello");
-            // }
         },
         });
         return callIdQuiz
@@ -478,12 +603,14 @@ $(document).ready(function () {
     $(document).on("click","#inscrire,  #inscriptionAcc",function (e) {
         e.preventDefault();
         ShowInscription();
+        $("#pagePerso").hide()
     } )
 })
 
 $(document).ready(function (){
     $("#inscription").on("click", function(e){
         e.preventDefault();
+        $("#pagePerso").hide()
         localStorage.clear()
         let username =  $("#pseudo").val()
         let email = $("#email").val()
@@ -534,6 +661,7 @@ $(document).ready(function () {
     $(document).on("click", "#connect, #dejaCompte_signUpContainer" ,function (e) {
         e.preventDefault();
         ShowConnection();
+        $("#pagePerso").hide()
     })
 })
 
@@ -541,11 +669,11 @@ $(document).ready(function () {
 $(document).ready(function (){
     $("#connection").on("click", function(e){
         e.preventDefault();
+        $("#pagePerso").hide()
         localStorage.clear()
 
         let username =  $("#pseudoConn").val()
         let password = $("#passwordConn").val()
-        console.log();
             $.ajax({
                 type: "POST",
                 url: "http://127.0.0.1:3000/Connection",
@@ -557,10 +685,9 @@ $(document).ready(function (){
                 processData: false,
                 dataType: "json",
                 success: function (res) {
-                    console.log(res);
                     let idUser = res.user[0].id;
-                    Cookies.set('token', res.token);
                     sessionStorage.setItem('idUser', idUser)
+                    Cookies.set('token', res.token);
                     HeaderPrincipale()
                     PagePerso(res)
                     $("#container").hide()
@@ -576,6 +703,101 @@ $(document).ready(function (){
     
 })
 
+$(document).ready(function(){
+    $(document).on("click",  "#profile", function(e){
+        e.preventDefault();
+        ShowProfile()
+
+    })
+})
+
+
+$(document).ready(function(){
+    $("#buttonCreeQuiz-pagePerso").on("click", function(e){
+        e.preventDefault();
+        
+        $.ajax({
+            url: "http://127.0.0.1:3000",
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                let length = res.thema.length;
+                ShowCreationQuiz(res, length)
+            },
+        });
+    });
+})
+
+
+
+
+$(document).ready(function(){
+    $("#sendQuiz").on("click", function(e){
+        e.preventDefault();
+        let themaId  = $("#menu_thematique").val()
+        let empty = true
+        if(!$("#nomQuiz").val()){
+            alert('Inserer tout le champ')
+
+        }else{ 
+            
+            
+            $('.questionCreation').each(function() {
+                if ($(this).val() == "") {
+                alert('Inserer tout le champ')
+                return false;
+                }else{
+                    $('.rep_incorrecte').each(function() {
+                        if ($(this).val() == "") {
+                        alert('Inserer tout le champ')
+                        return false;
+                        }else{
+                            empty = false
+                        }
+                        
+                    
+                    });
+                }
+            })
+        }
+        if (empty === false) {
+            let questReps = []
+            $(".questionCreation").each(function (index){
+                questReps.push([])
+                questReps[index].push($(this).val())
+                questReps[index].push([])
+                for(let i = index*4; i < (index*4)+4; i++){
+                    questReps[index][1].push($(".rep_incorrecte").eq(i).val())
+                }
+            })
+            let idUtilisateur = sessionStorage.getItem('idUser')
+            let nomQuizz = $("#nomQuiz").val() 
+
+            $.ajax({
+                type: "POST",
+                url: "http://127.0.0.1:3000/creationQuiz",
+                data: JSON.stringify({
+                    "NameQuiz": nomQuizz, 
+                    "idUser": idUtilisateur,
+                    "idCate": themaId,
+                    "questReps": questReps
+                }),
+                contentType: 'application/json',
+                processData: false,
+                dataType: "json",
+                success: function (res) {
+                    console.log(res);
+                },
+                error: function(datas) {
+                    alert(datas.responseText);
+                } 
+                        
+            })  
+        }
+  
+    });
+})
 
 
 
@@ -589,6 +811,19 @@ $(document).ready(function (){
 
 
 
+        // let idQuizQuest = []
+
+        // $(".questionCreation").each(function (){
+        //     idQuizQuest.push(this.id)
+        // })
+        
+        // console.log(idQuizQuest);
+        // let idQuizReps = []
+
+        // $(".rep_incorrecte").each(function (){
+        //     idQuizReps.push(this.id)
+        // })
+        
 
 
 // let user = Cookies.get('token')

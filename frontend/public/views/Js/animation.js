@@ -34,6 +34,47 @@ function toggleMenu(){
     }
 }
 
+// animation du titre h1 page d'accueil
+
+var textWrapper = document.querySelector(".bienvenue");
+textWrapper.innerHTML = textWrapper.textContent.replace(/\S/g,"<span class='letter'>$&</span>");
+anime
+  .timeline({ loop: true })
+  .add({
+    targets: ".bienvenue .letter",
+    opacity: [0, 1],
+    easing: "easeInOutQuad",
+    duration: 2250,
+    delay: (el, i) => 150 * (i + 1),
+  })
+  .add({
+    targets: ".bienvenue",
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    // delay: 100000,
+    delay: 100,
+});
+
+// animation page des scores - titre h1
+anime
+  .timeline({ loop: true })
+  .add({
+    targets: "#h1-scorePage .decouvre",
+    scale: [14, 1],
+    opacity: [0, 1],
+    easing: "easeOutCirc",
+    duration: 1200,
+    delay: (el, i) => 800 * i,
+  })
+  .add({
+    targets: "#h1-scorePage",
+    opacity: 0,
+    duration: 5000,
+    easing: "easeOutExpo",
+    delay: 1000000,
+  });
+
 
 // Switch panel button
 // signUpButton.addEventListener('click', () => {
