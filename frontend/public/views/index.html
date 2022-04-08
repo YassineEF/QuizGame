@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QuiZo</title>
     <!-- LINK CSS -->
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/styleFinale.css">
     <!--FONT: RUDA -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,11 +44,14 @@
 
     <!-- MAIN -->
     <main>
-        <!-- TEXT ACCEUIL -->
+
+      <!-- <audio src="./images/applaudir_vrai.wav" >
+      <source src="./images/rire_faux.wav" id="audioId"> -->
+        <!-- TEXT ACCUEIL -->
         <div class="titre">
             <h1 class="bienvenue">Bienvenue sur QuiZi !</h1>
-            <h3>Tu veux t'amuser? Créer des quiz? Défier des amis?</h3>
-            <h5>Explore les catégories, choisis ton quiz.<br> Si tu veux conserver tes scores et les comparer à ceux des autres joueurs, <a href="#" id="inscriptionAcc">inscris-toi!</a></h5>
+            <h3>Tu veux t'amuser ? Créer des quiz ? Défier des amis ?</h3>
+            <h5>Explore les catégories, choisis ton quiz.<br> Si tu veux conserver tes scores et les comparer à ceux des autres joueurs, <a href="#" id="inscriptionAcc">inscris-toi !</a></h5>
         </div>
         <!-- CATEGORIE IMG  -->
         <div class="categories"></div>
@@ -108,7 +111,7 @@
                       <tr class="tr-topTable-scorePage">
                         <td class="topTable-scorePage"><h4>Pseudo</h4></td>
                         <td class="topTable-scorePage"><h4>Score / 10</h4></td>
-                        <td class="topTable-scorePage"><h4>Temps</h4></td>
+                        <td class="topTable-scorePage"><h4>Temps en sec</h4></td>
                       </tr>
                     </tbody>
                   </table>
@@ -164,7 +167,7 @@
                     <td class="topTable-pagePerso"><h4>Date</h4></td>
                     <td class="topTable-pagePerso"><h4>Nom du Quiz</h4></td>
                     <td class="topTable-pagePerso"><h4>Score / 10</h4></td>
-                    <td class="topTable-pagePerso"><h4>Temps </h4></td>
+                    <td class="topTable-pagePerso"><h4>Temps en sec </h4></td>
                   </tr>
                 </tbody>
               </table>
@@ -177,44 +180,35 @@
 
 
         <div id="creationQuiz">
-
-        <div id="choix_thematique">
-          <legend><label for="choix_thematique">CHOISIS UNE THEMATIQUE</label></legend><br>
-              <select name="menu_thematique" id="menu_thematique">
-              </select>
-        </div>
-
-        <div id="nombre_reponse"> <!-- Choix du nombre de réponses --> 
-
-            <div class="error"></div><br><br>
-          <legend>Choisis le nom du Quiz</legend><br>
-          <div id="button_text">
-            <!-- <input type="radio" name="2_rep" value="2_rep" id="2_rep" /> <label for="2_rep">2 (VRAI - FAUX)</label> -->
-            <!-- <input type="radio" name="4_rep" value="4_rep" id="4_rep" /> <label for="4_rep">4 REPONSES</label> -->
-            <input type="text" name="question" id="nomQuiz" value="" placeholder="Nom du Quiz" />
+          <h1 id="h1CreateQuiz"> ,crée ton quiz en quelques minutes</h1>
+          <div id="choix_thematique">
+            <legend class="choixThematique-createQuiz"><label for="choix_thematique">CHOISIS UNE THEMATIQUE</label></legend><br>
+            <select name="menu_thematique" id="menu_thematique">
+            </select>
           </div>
 
+          <div id="nombre_reponse"> <!-- Choix du nombre de réponses --> 
+            <div class="error"></div><br><br>
+            <legend class="nomQuiz-createQuiz">Choisis le nom du Quiz</legend><br>
+            <div id="button_text">
+            <!-- <input type="text" name="question" id="nomQuiz"  placeholder="Nom du Quiz" /> -->
+            </div>
+          </div>
+
+            <div id="nouvelle_question"> <!-- Saisie Questions + Réponses -->
+              <legend id="completeQuestRps-createQuiz">Complète les champs suivants :</legend><br>
+              <!--------------------------------------------- QUESTION + REPONSES + CHECKBOX ----------------------->
+              <div id="question_reponses"></div>
+              <div class="error"></div>
+              <input type="button" id="sendQuiz" value="Je valide mon quiz"><br><br>
+            </div>
         </div>
-
-        <div id="nouvelle_question"> <!-- Saisie Questions + Réponses -->
-
-          <legend>Tes questions et réponses</legend><br>
-    
-          <!--------------------------------------------- QUESTION + REPONSES + CHECKBOX ----------------------->
-          <div id="question_reponses"></div>
-
-
-         
-          <div class="error"></div>
-          <input type="button" id="sendQuiz" value="Envoyer Quiz"><br><br>
-        </div>
-    </div>
 
 
     <div id="modificationQuiz">
 
         <div id="choix_thematique">
-          <legend><label for="choix_thematique">CHOISIS UNE THEMATIQUE</label></legend><br>
+          <legend class="choixThematique-createQuiz"><label for="choix_thematique">CHOISIS UNE THEMATIQUE</label></legend><br>
               <select name="menu_thematique" id="menu_thema">
               </select>
         </div>
@@ -222,17 +216,18 @@
         <div id="nombre_reponse"> <!-- Choix du nombre de réponses --> 
 
             <div class="error"></div><br><br>
-          <legend>Choisis le nom du Quiz</legend><br>
-          <div id="button_text">
+          <legend class="nomQuiz-createQuiz">Choisis le nom du Quiz</legend><br>
+          <div id="button_text_modif">
 
             <input type="text" name="question" class="nomQuizModif" value="" placeholder="Nom du Quiz" />
           </div>
 
         </div>
 
-        <div id="nouvelle_question"> <!-- Saisie Questions + Réponses -->
+        <div id="nouvelle_question_modif"> <!-- Saisie Questions + Réponses -->
 
-          <legend>Tes questions et réponses</legend><br>
+          <legend class="choixThematique-createQuiz">Modifie tes questions et/ou tes réponses</legend><br>
+
     
           <!--------------------------------------------- QUESTION + REPONSES + CHECKBOX ----------------------->
           <div id="question_reponses_modif"></div>
@@ -240,7 +235,7 @@
 
          
           <div class="error"></div>
-          <input type="button" id="sendModif" value="Envoyer Quiz"><br><br>
+          <input type="button" id="sendModif" value="Je valide mes modifications"><br><br>
         </div>
     </div>
     <div id="ModifQuiz"></div>

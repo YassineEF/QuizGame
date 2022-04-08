@@ -102,7 +102,7 @@ function showQuestions() {
   $("#overlay_inscription").hide();
   $(".questRep-QuizQuest").show();
   $("#overlay-QuizQuest").show();
-  $("#overlay-QuizQuest").html(`<p id="overlay-start">START</p>`);
+  $("#overlay-QuizQuest").html(`<p id="overlay-start">Clique ici pour jouer</p>`);
   $("#topQuizQuest").show();
   $("#table-scorePage").hide();
   $("#creationQuiz").hide();
@@ -156,7 +156,7 @@ function timer(scores, mins, secs, numeroQuest) {
       // scoreTable(score,minutes,secondes,numeroQuest)
       $("#bravoDomm-QuizQuest").empty();
     }
-  }, 100); //1000
+  }, 1000); //1000
   //function stopTimer() {
   //clearInterval(time);
 }
@@ -173,7 +173,7 @@ function scoreTable(response, scores, temp) {
   $("#ModifQuiz").empty();
   $("#modificationQuiz").hide();
   $("#score").append(
-    `<h1 id="h1-scorePage">DÉCOUVRE TES SCORES <br /> & <br />CEUX DES AUTRES JOUEURS</h1>`
+    `<h1 id="h1-scorePage">DÉCOUVRE TON SCORES <br /> & <br />CELUI DES AUTRES JOUEURS</h1>`
   );
   if (scores <= 3) {
     $("#score").append(
@@ -250,23 +250,23 @@ function ShowConnection() {
   $("#modificationQuiz").hide();
 }
 
-function PagePerso(response) {
-  $("#titrePagePerso")
-    .append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${response.user[0].username}</span> ! </h1>
-    <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
-  if (response.scores.length === 0) {
-    alert("Premiere connection, commence à jouer pour voir tes scores");
-  } else {
-    for (let i = 0; i < response.scores.length; i++) {
-      $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
-            <th class="oddRow-pagePerso">${response.scores[i].date}</th>
-            <th class="oddRow-pagePerso">${response.scores[i].name}</th>
-            <th class="oddRow-pagePerso">${response.scores[i].score}</th>
-            <th class="oddRow-pagePerso">${response.scores[i].timer}secs</th>
-            </tr>`);
-    }
-  }
-}
+// function PagePerso(response) {
+//   $("#titrePagePerso")
+//     .append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${response.user[0].username}</span> ! </h1>
+//     <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
+//   if (response.scores.length === 0) {
+//     alert("Premiere connection, commence à jouer pour voir tes scores");
+//   } else {
+//     for (let i = 0; i < response.scores.length; i++) {
+//       $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
+//             <th class="oddRow-pagePerso">${response.scores[i].date}</th>
+//             <th class="oddRow-pagePerso">${response.scores[i].name}</th>
+//             <th class="oddRow-pagePerso">${response.scores[i].score}</th>
+//             <th class="oddRow-pagePerso">${response.scores[i].timer}secs</th>
+//             </tr>`);
+//     }
+//   }
+// }
 
 function ShowProfile() {
   $("#container").hide();
@@ -305,31 +305,32 @@ function ShowCreationQuiz(response, len) {
   $("#table-scorePage").hide();
   $("#pagePerso").hide();
   $("#creationQuiz").show();
-  $("#nomQuiz").empty();
+  $("#button_text").empty();
   $("#ModifQuiz").empty();
   $("#modificationQuiz").hide();
+  $("#question_reponses_modif").empty();
   $("#question_reponses").empty();
+  $("#button_text").append(`<input type="text" name="question" id="nomQuiz"  placeholder="Nom du Quiz" />`)
   for (let i = 0; i < 10; i++) {
     $("#question_reponses")
-      .append(`<input type="text" name="question" class="questionCreation" id="${i}" value="" placeholder="Question ${
-      i + 1
-    }" /><br>
+      .append(`<input type="text" name="question" class="questionCreation" id="${i}" value="" placeholder="Question ${i + 1}" /><br>
         
-        <input type="text" name="rep_incorrecte rep_correcte" class="rep_incorrecte" id="${i}" data-true="1" placeholder="Ecrire içi la reponse correcte" />
+        <input type="text" name="rep_incorrecte " class="rep_incorrecte rep_correcte" id="${i}" data-true="1" placeholder="Ecrire ici la réponse correcte" />
         <br>
         
         
-        <input type="text" name="rep_incorrecte" class="rep_incorrecte"  id="${i}" data-true="0" placeholder="A renseigner" />
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte"  id="${i}" data-true="0" placeholder="Autre réponse" />
         <br>
         
         
-        <input type="text" name="rep_incorrecte" class="rep_incorrecte" id="${i}" data-true="0" placeholder="A renseigner" />
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte" id="${i}" data-true="0" placeholder="Autre réponse" />
         <br>
         
         
-        <input type="text" name="rep_incorrecte" class="rep_incorrecte"  id="${i}" data-true="0" placeholder="A renseigner" />
+        <input type="text" name="rep_incorrecte" class="rep_incorrecte"  id="${i}" data-true="0" placeholder="Autre réponse" />
         <br><br><br>`);
   }
+  $("#menu_thematique").empty()
   for (let z = 0; z < len; z++) {
     $("#menu_thematique").append(
       `<option value="${response.thema[z].id}">${response.thema[z].thématique}</option>`
@@ -380,8 +381,8 @@ function ShowModificationQuiz(response, questRep, quest) {
   // console.log(quest[0].name);
   $(".nomQuizModif").attr("id", quest[0].id_quiz);
   $(".nomQuizModif").val(quest[0].name);
+  $("#question_reponses_modif").empty();
   $("#question_reponses").empty();
-  console.log(questRep);
   for (let i = 0; i < questRep.length; i++) {
     $("#question_reponses_modif")
       .append(`<input type="text" name="question" class="questionCreation" id="${questRep[i][1]}" value="${questRep[i][0]}"  /><br>
@@ -484,8 +485,9 @@ $(document).on(
     $("#table-scorePage").hide();
     $("#score").empty();
     $("#ModifQuiz").empty();
-    $("#modificationQuiz").hide();
+    $("#modificationQuiz").hide()
     localStorage.clear();
+
   }
 );
 // Page quiz par thématiques
@@ -650,14 +652,18 @@ $(document).ready(function () {
               points += 1;
 
               let li = document.querySelectorAll(".li-numeroQuest-QuizQuest");
-              li[counterQuest - 1].style.background = "green";
+              li[counterQuest - 1].style.background = "#86b026";
+
+            //   let audio1 = newAudio()
+            //   audio1.src = "./images/applaudir_vrai.wav"
+            //   audio1.play()
             } else {
               $("#bravoDomm-QuizQuest").html(
                 `<p class="dommage-QuizQuest">DOMMAGE !</p>`
               );
               $(".grid-itemQq").css("pointer-events", "none");
               let li = document.querySelectorAll(".li-numeroQuest-QuizQuest");
-              li[counterQuest - 1].style.background = "orange";
+              li[counterQuest - 1].style.background = "#ee9235";
             }
             localStorage.setItem("score", points);
             setTimeout(() => {
@@ -837,7 +843,23 @@ $(document).ready(function () {
         sessionStorage.setItem("idUser", idUser);
         Cookies.set("token", res.token);
         HeaderPrincipale();
-        PagePerso(res);
+        
+        // PagePerso(res);
+            $("#titrePagePerso")
+        .append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${res.user[0].username}</span> ! </h1>
+        <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
+    if (res.scores.length === 0) {
+        alert("Premiere connection, commence à jouer pour voir tes scores");
+    } else {
+        for (let i = 0; i < res.scores.length; i++) {
+        $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
+                <th class="oddRow-pagePerso">${res.scores[i].date}</th>
+                <th class="oddRow-pagePerso">${res.scores[i].name}</th>
+                <th class="oddRow-pagePerso">${res.scores[i].score}</th>
+                <th class="oddRow-pagePerso">${res.scores[i].timer}secs</th>
+                </tr>`);
+        }
+    }
         $("#container").hide();
         $("#pagePerso").show();
         // location.reload()
@@ -876,6 +898,8 @@ $(document).ready(function () {
 $(document).ready(function () {
   $("#sendQuiz").on("click", function (e) {
     e.preventDefault();
+    let questReps = [];
+    console.log(questReps);
     let themaId = $("#menu_thematique").val();
     let empty = true;
 
@@ -889,10 +913,10 @@ $(document).ready(function () {
     $("#nomQuiz").val() == "" ? (empty = false) : null;
 
     if (!empty) {
-      $(".error").html("Inserer tout le champ");
+      $(".error").html("Complète tous les champs");
       console.log("here");
     } else {
-      let questReps = [];
+       questReps = [];
       $(".questionCreation").each(function (index) {
         questReps.push([]);
         questReps[index].push($(this).val());
@@ -901,6 +925,7 @@ $(document).ready(function () {
           questReps[index][1].push($(".rep_incorrecte").eq(i).val());
         }
       });
+      console.log(questReps);
       let idUtilisateur = sessionStorage.getItem("idUser");
       let nomQuizz = $("#nomQuiz").val();
       $.ajax({
@@ -1008,22 +1033,22 @@ $(document).ready(function () {
       success: function (res) {
         // put questions and answers in variables
         let { quests, reps } = res;
-        let idQuest = [];
+        let idQuestion = [];
         // put in a emlpty array the id of the questions
         for (i in quests) {
-          idQuest.push(quests[i].id_quest);
+          idQuestion.push(quests[i].id_quest);
         }
-        let results = [];
+        let resultat = [];
         //put questions, answers and boolean in a array
-        for (j in idQuest) {
-          results.push([quests[j].question, quests[j].id_quest]);
+        for (j in idQuestion) {
+          resultat.push([quests[j].question, quests[j].id_quest]);
           for (k in reps) {
-            if (reps[k].id_question === idQuest[j]) {
-              results[j].push([reps[k].reponse, reps[k].boolean, reps[k].id]);
+            if (reps[k].id_question === idQuestion[j]) {
+              resultat[j].push([reps[k].reponse, reps[k].boolean, reps[k].id]);
             }
           }
         }
-        ShowModificationQuiz(res, results, quests);
+        ShowModificationQuiz(res, resultat, quests);
       },
     });
   });
@@ -1045,7 +1070,7 @@ $(document).ready(function () {
     $(".nomQuizModif").val() == "" ? (empty = false) : null;
 
     if (!empty) {
-      $(".error").html("Inserer tout le champ");
+      $(".error").html("Complète tous les champs");
       console.log("here");
     } else {
       let questArray = [];
@@ -1104,26 +1129,3 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-// let idQuizQuest = []
-
-// $(".questionCreation").each(function (){
-//     idQuizQuest.push(this.id)
-// })
-
-// console.log(idQuizQuest);
-// let idQuizReps = []
-
-// $(".rep_incorrecte").each(function (){
-//     idQuizReps.push(this.id)
-// })
-
-// let user = Cookies.get('token')
-// if (user) {
-//     console.log("1");
-// }
