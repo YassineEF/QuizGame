@@ -186,8 +186,8 @@
 
         <div id="nombre_reponse"> <!-- Choix du nombre de réponses --> 
 
+            <div class="error"></div><br><br>
           <legend>Choisis le nom du Quiz</legend><br>
-   
           <div id="button_text">
             <!-- <input type="radio" name="2_rep" value="2_rep" id="2_rep" /> <label for="2_rep">2 (VRAI - FAUX)</label> -->
             <!-- <input type="radio" name="4_rep" value="4_rep" id="4_rep" /> <label for="4_rep">4 REPONSES</label> -->
@@ -205,9 +205,45 @@
 
 
          
-          <input type="button" id="sendQuiz" value="Envoyer Quiz">
+          <div class="error"></div>
+          <input type="button" id="sendQuiz" value="Envoyer Quiz"><br><br>
         </div>
-</div>
+    </div>
+
+
+    <div id="modificationQuiz">
+
+        <div id="choix_thematique">
+          <legend><label for="choix_thematique">CHOISIS UNE THEMATIQUE</label></legend><br>
+              <select name="menu_thematique" id="menu_thema">
+              </select>
+        </div>
+
+        <div id="nombre_reponse"> <!-- Choix du nombre de réponses --> 
+
+            <div class="error"></div><br><br>
+          <legend>Choisis le nom du Quiz</legend><br>
+          <div id="button_text">
+
+            <input type="text" name="question" class="nomQuizModif" value="" placeholder="Nom du Quiz" />
+          </div>
+
+        </div>
+
+        <div id="nouvelle_question"> <!-- Saisie Questions + Réponses -->
+
+          <legend>Tes questions et réponses</legend><br>
+    
+          <!--------------------------------------------- QUESTION + REPONSES + CHECKBOX ----------------------->
+          <div id="question_reponses_modif"></div>
+
+
+         
+          <div class="error"></div>
+          <input type="button" id="sendModif" value="Envoyer Quiz"><br><br>
+        </div>
+    </div>
+    <div id="ModifQuiz"></div>
         <!-- BOUTON AJOUT QUIZ -->
 
         <!-- <div id="ajout_quiz_2">

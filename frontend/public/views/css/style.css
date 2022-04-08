@@ -335,8 +335,25 @@ a {
   position: relative;
   cursor: pointer;
 }
+.quiz_divv {
+  height: 70px;
+  background-color: #45467a;
+  border-top-left-radius: 7%;
+  border-bottom-left-radius: 5%;
+  border-top-right-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+  margin: 0 auto;
+  margin-top: 50px;
+  position: relative;
+  /* cursor: pointer; */
+}
 
 .quiz_div > img {
+  position: absolute;
+  left: -9%;
+  top: -12%;
+}
+.quiz_divv> img {
   position: absolute;
   left: -9%;
   top: -12%;
@@ -1065,9 +1082,18 @@ form #sign-up-container #sign-in-container {
   text-align: center;
   outline: none;
 }
+.nomQuizModif{
+  border: 4.65455px solid #D8D8EA;
+  box-sizing: border-box;
+  border-radius: 60.5091px;
+  font-size: 20px;
+  font-family: 'Russo One';
+  text-align: center;
+  outline: none;
+}
 
-#rep_correcte {
-    border: 4.65455px solid #A7D72E;
+.rep_correcte {
+    border: 4.65455px solid #A7D72E!important;
     box-sizing: border-box;
     border-radius: 60.5091px;
     margin: 10px;
@@ -1093,16 +1119,18 @@ form #sign-up-container #sign-in-container {
     font-size: 15px;
 }
 
-#menu_thematique {
+#menu_thematique, #menu_thema {
     border: 4.65455px solid #D8D8EA;
     box-sizing: border-box;
     border-radius: 60.5091px;
 }
 
-#menu_thematique, #button_text, #nouvelle_question, #questionCreation {
+#menu_thematique, #button_text, #nouvelle_question, #questionCreation, #menu_thema {
     font-family: 'Russo One';
     text-align: center;
 }
+
+
 
 #button_text {
     color: #45467A;
@@ -1118,7 +1146,9 @@ form #sign-up-container #sign-in-container {
 #question_reponses > .questionCreation {
     width: 730px;
 }
-
+#question_reponses_modif > .questionCreation {
+  width: 730px;
+}
 body {
     background-image: conic-gradient(
     from 65deg at -5% 30%,
@@ -1149,7 +1179,7 @@ body {
 }
 
 
-input[type=button]{
+#sendQuiz{
   background-color: #A7D72E;
   border: none;
   color: white;
@@ -1157,12 +1187,101 @@ input[type=button]{
   text-decoration: none;
   margin: 4px 2px;
   cursor: pointer;
-  border-radius: 20%;
+  border-radius: 20px;
+}
+#sendModif{
+  background-color: #A7D72E;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
 }
 
 
+#ModifQuiz{
+  /* Supression du GRID pour MOBILE */
+  color: white;
+  text-align: center;
+  width: 300px;
+  margin-left: 20%;
+}
 
 
+/* PAGE ADMIN */
+    .button_a, .button_b {
+      width: 100px;
+      height: 20px;
+      border-radius: 9px;
+      cursor: pointer;
+      outline: none;
+
+  }
+
+  #button_ab {
+      float: right;
+      padding-top: 10px;
+      padding-right: 20px;
+  }
+
+  .button_a {
+      background-color: #A7D72E;
+      box-shadow: #8BB71D 5px 0px;
+      border: none;
+      margin-bottom: 8px;
+  }
+
+  .button_b {
+      background-color: #FFC334;
+      box-shadow: #EB943B 5px 0px;
+      border: none;
+  }
+
+  /* Bouton Ajout */
+
+  .button_ajout {
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+    background-color: #ABD83F;
+    box-shadow: #86B026 5px 0px;
+    border:none;
+    font-family: 'Russo One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    color: #3D3A32;
+    cursor: pointer;
+}
+
+#ajout_quiz > #button_ajout:focus {
+    font-size: 50px;
+}
+
+#ajout_quiz {
+    margin-left: 50px;
+}
+
+#ajout {
+    bottom: 10px;
+    font-family: 'Russo One';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 36px;
+    color: #3D3A32;
+    cursor: pointer;
+}
+
+.error{
+  font-weight: 600;
+  color: #EB943B;
+  font-family: 'Russo One';
+  font-size: 40px;
+}
 
 
 @media screen and (min-width: 768px) {
@@ -1323,6 +1442,16 @@ input[type=button]{
     border-bottom-right-radius: 2rem;
     position: relative;
   }
+  .quiz_divv {
+    height: 70px;
+    width: 500px;
+    background-color: #45467a;
+    border-top-left-radius: 10%;
+    border-bottom-left-radius: 10%;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    position: relative;
+  }
 
   /* Espacement des 2 colonnes */
   .quiz_div {
@@ -1331,6 +1460,18 @@ input[type=button]{
 
   /* Positions des logos dans le GRID */
   .quiz_div > img {
+    position: absolute;
+    left: -24px;
+    top: 50%;
+    transform: translate(0, -50%);
+  }
+   /* Espacement des 2 colonnes */
+   .quiz_divv{
+    margin-left: 25px;
+  }
+
+  /* Positions des logos dans le GRID */
+  .quiz_divv > img {
     position: absolute;
     left: -24px;
     top: 50%;
