@@ -1613,7 +1613,7 @@ width: 30rem;
   }
   .quiz_divv {
     height: 70px;
-    width: 500px;
+    width: 650px; 
     background-color: #45467a;
     border-top-left-radius: 10%;
     border-bottom-left-radius: 10%;
@@ -1648,12 +1648,13 @@ width: 30rem;
   }
 
   /* Centrage du texte dans les bannières */
-  .centered_Quiz {
+  .centered_Quiz{ 
     text-align: center;
-    padding-top: 4.5%;
+    padding: 4%;
     color: #d8d8ea;
     top: 100px;
     font-size: 1.5rem;
+
   }
 
   /* Overlay */

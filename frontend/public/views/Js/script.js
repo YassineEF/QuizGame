@@ -250,23 +250,6 @@ function ShowConnection() {
   $("#modificationQuiz").hide();
 }
 
-// function PagePerso(response) {
-//   $("#titrePagePerso")
-//     .append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${response.user[0].username}</span> ! </h1>
-//     <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
-//   if (response.scores.length === 0) {
-//     alert("Premiere connection, commence à jouer pour voir tes scores");
-//   } else {
-//     for (let i = 0; i < response.scores.length; i++) {
-//       $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
-//             <th class="oddRow-pagePerso">${response.scores[i].date}</th>
-//             <th class="oddRow-pagePerso">${response.scores[i].name}</th>
-//             <th class="oddRow-pagePerso">${response.scores[i].score}</th>
-//             <th class="oddRow-pagePerso">${response.scores[i].timer}secs</th>
-//             </tr>`);
-//     }
-//   }
-// }
 
 function ShowProfile() {
   $("#container").hide();
@@ -309,6 +292,8 @@ function ShowCreationQuiz(response, len) {
   $("#ModifQuiz").empty();
   $("#modificationQuiz").hide();
   $("#question_reponses_modif").empty();
+  let nameUs = sessionStorage.getItem("nameUser")
+  $("#h1CreateQuiz").append(`${nameUs}, crée ton quiz en quelques minutes`)
   $("#question_reponses").empty();
   $("#button_text").append(`<input type="text" name="question" id="nomQuiz"  placeholder="Nom du Quiz" />`)
   for (let i = 0; i < 10; i++) {
@@ -840,6 +825,8 @@ $(document).ready(function () {
       dataType: "json",
       success: function (res) {
         let idUser = res.user[0].id;
+        let nameUser = res.user[0].username
+        sessionStorage.setItem("nameUser", nameUser);
         sessionStorage.setItem("idUser", idUser);
         Cookies.set("token", res.token);
         HeaderPrincipale();
