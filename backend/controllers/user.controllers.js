@@ -7,7 +7,6 @@ require('dotenv').config()
 
 
 module.exports.InscriptionUser = async function  (req, res) {
-    console.log(req.body);
     let Username = req.body.Username;
     let Email = req.body.Email
     let Password = req.body.Password
@@ -82,8 +81,6 @@ module.exports.ScoreUser = async function  (req, res) {
   let timer = req.body.temps
 
   let score = req.body.score
-  
-  console.log(score);
   
   db.query("INSERT INTO score (score, timer, date, id_admin, id_quiz) VALUES (?,?, now(), ?, ?)", [score, timer, idUser, idQuiz] ,function(err,result){
       if(err){

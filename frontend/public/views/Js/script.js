@@ -91,7 +91,7 @@ function hideAcceuil() {
   //Montrer qu'il peux s'inscrire pendant 4s
   setTimeout(function () {
     $("#overlay_text").hide();
-  }, 100); //4000
+  }, 3000); //4000
   $("#creationQuiz").hide();
 }
 
@@ -172,6 +172,7 @@ function scoreTable(response, scores, temp) {
   $("#score").empty();
   $("#ModifQuiz").empty();
   $("#modificationQuiz").hide();
+  $("#table-scoreP").empty()
   $("#score").append(
     `<h1 id="h1-scorePage">DÉCOUVRE TON SCORES <br /> & <br />CELUI DES AUTRES JOUEURS</h1>`
   );
@@ -201,6 +202,11 @@ function scoreTable(response, scores, temp) {
   $("#score").append(`<div class="buttons-scorePage">
     <a class="buttonChoisisQ-scorePage" href="#">CHOISIS UN AUTRE QUIZ</a><br/><a class="buttonChoisis-scorePage" href="#">CHOISIS UNE AUTRE THÉMATIQUE</a></div>`);
   $("#table-scorePage").show();
+  $("#table-scoreP").append(`<tr class="tr-topTable-scorePage">
+  <td class="topTable-scorePage"><h4>Pseudo</h4></td>
+  <td class="topTable-scorePage"><h4>Score / 10</h4></td>
+  <td class="topTable-scorePage"><h4>Temps en sec</h4></td>
+</tr>`);
   for (let i = 0; i < response.result.length; i++) {
     $("#table-scoreP").append(`<tr class="tr-oddRow-scorePage">
             <th class="oddRow-scorePage">${response.result[i].username}</th>
@@ -270,6 +276,8 @@ function ShowProfile() {
   $("#score").empty();
   $("#ModifQuiz").empty();
   $("#modificationQuiz").hide();
+  $("#titrePagePerso").show()
+  $("#table-profile").show()
 }
 
 function ShowCreationQuiz(response, len) {
@@ -412,6 +420,27 @@ function ShowModificationQuiz(response, questRep, quest) {
     }
   }
 }
+
+function ConnectionSuccess(responses){
+    $("#titrePagePerso")
+    .append(`<h1 id="bonjourPagePerso">Bonjour<br> <span id="spanBonjourPagePerso">${responses.user[0].username}</span> ! </h1>
+    <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
+    if (responses.scores.length === 0) {
+        alert("Connexion reussi !");
+    } else {
+    for (let i = 0; i < responses.scores.length; i++) {
+    $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
+            <th class="oddRow-pagePerso">${responses.scores[i].date}</th>
+            <th class="oddRow-pagePerso">${responses.scores[i].name}</th>
+            <th class="oddRow-pagePerso">${responses.scores[i].score}</th>
+            <th class="oddRow-pagePerso">${responses.scores[i].timer}secs</th>
+            </tr>`);
+    }
+}
+}
+
+
+
 // Page acceuil et Category
 $(document).ready(function () {
   HeaderPrincipale();
@@ -457,7 +486,7 @@ $(document).on(
   function (e) {
     e.preventDefault();
     HeaderPrincipale();
-    $("#background_img").show();
+    // $("#background_img").show();
     $(".categories").show();
     $(".titre").show();
     $("#h1-scorePage").hide();
@@ -760,7 +789,7 @@ $(document).ready(function () {
     let emailPattern = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i;
     let usernamePattern = /^[a-zA-Z0-9_-]{5,15}$/;
     if (!usernamePattern.test(username)) {
-      alert("Username Format incorrect, minimum 5 charcters and no symbols");
+      alert("Username Format incorrect, minimum 5 characters and no symbols");
     } else if (!emailPattern.test(email)) {
       alert("Email format invalid");
     } else if (password.length < 8) {
@@ -832,21 +861,7 @@ $(document).ready(function () {
         HeaderPrincipale();
         
         // PagePerso(res);
-            $("#titrePagePerso")
-        .append(`<h1 id="bonjourPagePerso">Bonjour <span id="spanBonjourPagePerso">${res.user[0].username}</span> ! </h1>
-        <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
-    if (res.scores.length === 0) {
-        alert("Premiere connection, commence à jouer pour voir tes scores");
-    } else {
-        for (let i = 0; i < res.scores.length; i++) {
-        $("#table-profile").append(`<tr class="tr-oddRow-pagePerso">
-                <th class="oddRow-pagePerso">${res.scores[i].date}</th>
-                <th class="oddRow-pagePerso">${res.scores[i].name}</th>
-                <th class="oddRow-pagePerso">${res.scores[i].score}</th>
-                <th class="oddRow-pagePerso">${res.scores[i].timer}secs</th>
-                </tr>`);
-        }
-    }
+        ConnectionSuccess(res)
         $("#container").hide();
         $("#pagePerso").show();
         // location.reload()
@@ -958,6 +973,10 @@ $(document).ready(function () {
       dataType: "json",
       success: function (res) {
         let length = res.quizz.length;
+        if(length === 0){
+            alert("T'as pas encore créé des quiz")
+            location.reload();
+        }else{
         $("#ModifQuiz").empty().show();
         //Montrer le liste de quiz
         $(".quiz_div").css("cursor", "none");
@@ -970,7 +989,9 @@ $(document).ready(function () {
                 <input class="button_b"  id="${res.quizz[i].id}" type="button" value="Supprimer">
                 </div> 
             <p class="centered_Quiz">${res.quizz[i].name}</p><img src="./images/symbole.png" alt= ? /></div>`);
+        } 
         }
+        
       },
       error: function (datas) {
         alert(datas.responseText);
