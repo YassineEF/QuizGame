@@ -91,7 +91,7 @@ function hideAcceuil() {
   //Montrer qu'il peux s'inscrire pendant 4s
   setTimeout(function () {
     $("#overlay_text").hide();
-  }, 3000); //4000
+  }, 3000); //3000
   $("#creationQuiz").hide();
 }
 
@@ -175,20 +175,25 @@ function scoreTable(response, scores, temp) {
   $("#table-scoreP").empty()
   $("#score").append(
     `<h1 id="h1-scorePage">DÉCOUVRE TON SCORES <br /> & <br />CELUI DES AUTRES JOUEURS</h1>`
-  );
+  ); /* Ajouter * autoplay loop * pour son en boucle */
   if (scores <= 3) {
     $("#score").append(
-      `<h2 id="h2-scorePage"> Ne baisse jamais les bras ! Recommence !  </h2>`
+      `<h2 id="h2-scorePage"> Ne baisse jamais les bras ! Recommence !  </h2><audio src="./images/rire_faux.wav" autoplay></audio>`
+    );
+  } else if (scores <= 4) {
+    $("#score").append(
+      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score ! </h2><audio src="./images/rire_faux.wav" autoplay></audio>`
     );
   } else if (scores <= 6) {
     $("#score").append(
-      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score ! </h2>`
+      `<h2 id="h2-scorePage"> Bravo ! Je suis sûre que tu peux encore augmenter ton score ! </h2><audio src="./images/applaudir_vrai.wav" autoplay></audio>`
     );
   } else if (scores <= 8) {
-    $("#score").append(`<h2 id="h2-scorePage">Félicitations !!! </h2>`);
+    $("#score").append(`<h2 id="h2-scorePage">Félicitations !!! </h2><audio src="./images/applaudir_vrai.wav" autoplay></audio>`
+    );
   } else {
     $("#score").append(
-      `<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) ! </h2>`
+      `<h2 id="h2-scorePage">BRAVO ! Tu es vraiment doué(e) ! </h2><audio src="./images/applaudir_vrai.wav" autoplay></audio>`
     );
   }
   let numeroQuest = localStorage.getItem("numeroQuest");
@@ -301,7 +306,7 @@ function ShowCreationQuiz(response, len) {
   $("#modificationQuiz").hide();
   $("#question_reponses_modif").empty();
   let nameUs = sessionStorage.getItem("nameUser")
-  $("#h1CreateQuiz").append(`${nameUs}, crée ton quiz en quelques minutes`)
+  $("#h1CreateQuiz").html(`${nameUs}, crée ton quiz en quelques minutes`)
   $("#question_reponses").empty();
   $("#button_text").append(`<input type="text" name="question" id="nomQuiz"  placeholder="Nom du Quiz" />`)
   for (let i = 0; i < 10; i++) {
@@ -424,7 +429,7 @@ function ShowModificationQuiz(response, questRep, quest) {
 function ConnectionSuccess(responses){
     $("#titrePagePerso")
     .append(`<h1 id="bonjourPagePerso">Bonjour<br> <span id="spanBonjourPagePerso">${responses.user[0].username}</span> ! </h1>
-    <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZo !</h1>`);
+    <h1 id="bienvenuePagePerso">Bienvenue sur ton espace perso QuiZi !</h1>`);
     if (responses.scores.length === 0) {
         alert("Connexion reussi !");
     } else {
@@ -433,7 +438,7 @@ function ConnectionSuccess(responses){
             <th class="oddRow-pagePerso">${responses.scores[i].date}</th>
             <th class="oddRow-pagePerso">${responses.scores[i].name}</th>
             <th class="oddRow-pagePerso">${responses.scores[i].score}</th>
-            <th class="oddRow-pagePerso">${responses.scores[i].timer}secs</th>
+            <th class="oddRow-pagePerso">${responses.scores[i].timer} sec</th>
             </tr>`);
     }
 }
@@ -668,12 +673,9 @@ $(document).ready(function () {
               let li = document.querySelectorAll(".li-numeroQuest-QuizQuest");
               li[counterQuest - 1].style.background = "#86b026";
 
-            //   let audio1 = newAudio()
-            //   audio1.src = "./images/applaudir_vrai.wav"
-            //   audio1.play()
             } else {
               $("#bravoDomm-QuizQuest").html(
-                `<p class="dommage-QuizQuest">DOMMAGE !</p>`
+                `<p class="dommage-QuizQuest">DOMMAGE !</p><audio src="./images/faux.wav" autoplay></audio>`
               );
               $(".grid-itemQq").css("pointer-events", "none");
               let li = document.querySelectorAll(".li-numeroQuest-QuizQuest");
